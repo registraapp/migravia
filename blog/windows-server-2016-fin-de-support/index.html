@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Windows Server 2016 fin de support : options et calendrier</title>
+<meta name="description" content="Windows Server 2016 perd son support étendu le 12 janvier 2027. Calendrier, mise à niveau vers 2025, réinstallation, ESU payantes : vos options.">
+<link rel="canonical" href="https://migravia.fr/blog/windows-server-2016-fin-de-support/">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Migravia">
+<meta property="og:title" content="Windows Server 2016 fin de support : options et calendrier">
+<meta property="og:description" content="Windows Server 2016 perd son support étendu le 12 janvier 2027. Calendrier, mise à niveau vers 2025, réinstallation, ESU payantes : vos options.">
+<meta property="og:url" content="https://migravia.fr/blog/windows-server-2016-fin-de-support/">
+<meta property="article:published_time" content="2026-11-03">
+<meta property="article:modified_time" content="2026-11-03">
+<meta name="author" content="Amine">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#F5F6F8;--ink:#13202E;--soft:#4F5D6C;--rule:#D2D8E0;--acc:#1E5B4F;--acc-dark:#174840;--acc-tint:#E1EFEA;--ok:#2D6A4F;--ok-tint:#E2F0E8;--warn:#8A5A00;--warn-tint:#F7EDD5;--bad:#9B2C2C;--bad-tint:#F6E1E1;--focus:#2C5FD9;--serif:"Newsreader",Georgia,serif;--sans:"Inter Tight",system-ui,sans-serif}
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;overflow-wrap:break-word}
+  :focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+  a{color:var(--ink)}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+  header .wrap{display:flex;flex-wrap:wrap;gap:10px 16px;justify-content:space-between;align-items:baseline;padding:24px 20px;border-bottom:1px solid var(--rule)}
+  .brand{font-family:var(--serif);font-weight:600;font-size:26px;text-decoration:none;letter-spacing:-.01em}
+  .brand small{font-family:var(--sans);font-weight:400;font-size:14px;color:var(--soft);margin-left:10px}
+  header nav.mainnav{display:flex;flex-wrap:wrap;gap:6px 20px;align-items:baseline}
+  header nav.mainnav a{margin:0;font-weight:500;text-decoration:none;border-bottom:2px solid transparent;padding-bottom:1px}
+  header nav.mainnav a:hover{border-bottom-color:var(--rule)}
+  header nav.mainnav a[aria-current="page"]{border-bottom-color:currentColor}
+  .hero{padding:64px 0 48px;max-width:800px}
+  .hero.small{padding:40px 0 32px}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(31px,4.8vw,50px);line-height:1.1;letter-spacing:-.015em;margin:0 0 20px;overflow-wrap:break-word}
+  .hero.small h1{font-size:clamp(30px,4.4vw,46px);line-height:1.12}
+  .lede{font-size:19px;color:var(--soft);margin:0 0 28px;max-width:62ch}
+  .actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .btn{display:inline-block;background:var(--acc);color:#fff;text-decoration:none;padding:14px 22px;border-radius:4px;border:0;font:inherit;font-weight:600;cursor:pointer;text-align:center}
+  .btn:hover{background:var(--acc-dark)}
+  .btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink);padding:12px 20px}
+  .btn.ghost:hover{background:#fff}
+  section{padding:56px 0;border-top:1px solid var(--rule)}
+  h2.s{font-family:var(--serif);font-weight:600;font-size:30px;line-height:1.2;margin:0 0 10px}
+  .sub{color:var(--soft);max-width:64ch;margin:0 0 28px}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .grid4{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .card{background:#fff;border:1px solid var(--rule);border-radius:6px;padding:24px}
+  .card h3{font-family:var(--serif);font-size:21px;margin:0 0 10px}
+  .card p{margin:0 0 10px}.card p:last-child{margin-bottom:0}
+  .card ul{padding-left:18px;margin:0}.card li{margin-bottom:7px}
+  .card.paper{background:#fbfbfb}
+  .card.real{border:2px solid var(--acc);background:var(--acc-tint)}
+  .facts{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .fact{background:#fff;border:1px solid var(--rule);border-left:5px solid var(--acc);border-radius:0 6px 6px 0;padding:18px 20px}
+  .fact strong{display:block;font-family:var(--serif);font-size:20px;line-height:1.25;margin-bottom:4px}
+  .fact p{margin:0;font-size:16px}
+  .fact .src{display:block;font-size:13px;color:var(--soft);margin-top:6px}
+  .quiz{background:#fff;border:1px solid var(--rule);border-radius:6px;padding:8px 24px 20px}
+  .q{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;padding:14px 0;border-bottom:1px solid var(--rule)}
+  .q:last-of-type{border-bottom:0}
+  .q p{margin:0}.q small{display:block;color:var(--soft);font-size:13px;margin-top:2px}
+  .seg{display:inline-flex;border:1px solid var(--rule);border-radius:4px;overflow:hidden}
+  .seg button{font:inherit;font-size:14px;border:0;background:#fff;padding:7px 12px;cursor:pointer;color:var(--ink);border-left:1px solid var(--rule)}
+  .seg button:first-child{border-left:0}
+  .seg button[aria-pressed="true"].y{background:var(--ok);color:#fff}
+  .seg button[aria-pressed="true"].p{background:var(--warn);color:#fff}
+  .seg button[aria-pressed="true"].n{background:var(--bad);color:#fff}
+  .result{margin-top:22px;border-radius:6px;padding:22px 24px;border:1px solid var(--rule);background:#fff}
+  .result.bad{background:var(--bad-tint);border-color:var(--bad)}
+  .result.mid{background:var(--warn-tint);border-color:var(--warn)}
+  .result.good{background:var(--ok-tint);border-color:var(--ok)}
+  .result h3{font-family:var(--serif);font-size:24px;margin:0 0 8px}
+  .result ul{margin:10px 0 0;padding-left:18px}
+  .offers{display:grid;grid-template-columns:repeat(var(--cols,3),1fr);gap:20px}
+  .offer{background:#fff;border:1px solid var(--rule);border-radius:6px;padding:24px;display:flex;flex-direction:column}
+  .offer.main{border:2px solid var(--acc);background:var(--acc-tint)}
+  .offer h3{font-family:var(--serif);font-size:22px;margin:0 0 4px}
+  .offer .price{font-size:26px;font-weight:600;margin:6px 0 12px;line-height:1.25}
+  .offer .price span{display:block;font-size:15px;font-weight:400;color:var(--soft)}
+  .offer ul{padding-left:18px;margin:0 0 16px}.offer li{margin-bottom:6px}
+  .offer .btn{margin-top:auto;align-self:flex-start}
+  ol.steps{counter-reset:s;list-style:none;padding:0;margin:0 0 8px;max-width:720px}
+  ol.steps li{counter-increment:s;position:relative;padding:0 0 22px 52px}
+  ol.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:34px;height:34px;border-radius:50%;border:2px solid var(--acc);display:grid;place-items:center;font-weight:600;color:var(--acc)}
+  ol.steps strong{display:block}
+  .guarantee{background:#fff;border-left:5px solid var(--acc);padding:22px 26px;max-width:760px;border-radius:0 6px 6px 0}
+  .guarantee p{margin:0 0 10px}.guarantee p:last-child{margin:0}
+  form{background:#fff;border:1px solid var(--rule);border-radius:6px;padding:26px;max-width:620px}
+  label{display:block;font-weight:500;margin-bottom:6px}
+  input,select,textarea{width:100%;max-width:100%;font:inherit;font-size:16px;padding:10px 12px;border:1px solid #B5BFCC;border-radius:4px;background:#fff;color:var(--ink);margin-bottom:16px}
+  .contact-grid{display:grid;grid-template-columns:minmax(0,620px) minmax(0,1fr);gap:28px;align-items:start}
+  .booking{background:#fff;border:1px solid var(--rule);border-radius:6px;padding:22px 24px}
+  .booking h3{font-family:var(--serif);font-size:21px;margin:0 0 8px}
+  .booking p{margin:0 0 14px}
+  .fine{font-size:14px;color:var(--soft)}
+  .thanks{display:none;background:#fff;border:1px solid var(--rule);border-radius:6px;padding:26px;max-width:620px}
+  footer{border-top:1px solid var(--rule);padding:30px 0 48px;color:var(--soft);font-size:14px}
+  footer p{margin:0 0 10px}
+  .faq{max-width:780px}
+  .faq details{border-bottom:1px solid var(--rule);padding:14px 0}
+  .faq summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:16px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";font-weight:400;font-size:22px;line-height:1}
+  .faq details[open] summary::after{content:"\2212"}
+  .faq details p{margin:10px 0 0;color:var(--soft)}
+  /* guides */
+  .crumb{font-size:14px;color:var(--soft);padding-top:22px}
+  .crumb ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:4px}
+  .crumb li+li::before{content:"\203A";margin:0 6px;color:var(--soft)}
+  .crumb a{color:var(--soft)}
+  .meta{font-size:14px;color:var(--soft);margin:0}
+  .answer{background:var(--acc-tint);border:2px solid var(--acc);border-radius:6px;padding:20px 24px;max-width:760px;margin:0 0 8px}
+  .answer p{margin:0}
+  .prose{max-width:740px;padding-bottom:24px}
+  .prose h2{font-family:var(--serif);font-weight:600;font-size:clamp(25px,3.2vw,30px);line-height:1.2;margin:48px 0 12px;padding-top:28px;border-top:1px solid var(--rule)}
+  .prose h3{font-family:var(--serif);font-weight:600;font-size:21px;line-height:1.3;margin:28px 0 8px}
+  .prose p,.prose ul,.prose ol{margin:0 0 16px}
+  .prose ul,.prose ol:not(.steps){padding-left:22px}
+  .prose li{margin-bottom:6px}
+  .prose code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em;background:#fff;border:1px solid var(--rule);border-radius:3px;padding:1px 5px;overflow-wrap:anywhere}
+  .prose pre{background:#13202E;color:#E8EDF3;border-radius:6px;padding:16px 18px;overflow-x:auto;font-size:14px;line-height:1.55;margin:0 0 18px;max-width:100%}
+  .prose pre code{background:none;border:0;padding:0;color:inherit;font-size:inherit;overflow-wrap:normal}
+  .tbl{overflow-x:auto;margin:0 0 20px;border:1px solid var(--rule);border-radius:6px;background:#fff}
+  .tbl table{border-collapse:collapse;width:100%;font-size:15px;line-height:1.5}
+  .tbl caption{text-align:left;font-size:14px;color:var(--soft);padding:12px 14px 0}
+  .tbl th,.tbl td{text-align:left;vertical-align:top;padding:11px 14px;border-bottom:1px solid var(--rule)}
+  .tbl thead th{background:var(--acc-tint);font-weight:600}
+  .tbl tr:last-child td{border-bottom:0}
+  .prose ul.check{list-style:none;padding-left:0}
+  ul.check li{position:relative;padding-left:30px}
+  ul.check li::before{content:"";position:absolute;left:2px;top:.32em;width:16px;height:16px;border:2px solid var(--acc);border-radius:3px;background:#fff}
+  .cta{background:#fff;border:1px solid var(--rule);border-left:5px solid var(--acc);border-radius:0 6px 6px 0;padding:22px 26px;margin:32px 0 8px}
+  .cta p{margin:0 0 14px}
+  .note{background:var(--warn-tint);border-left:5px solid var(--warn);padding:14px 18px;border-radius:0 6px 6px 0;font-size:15px}
+  .sources ol{padding-left:22px;font-size:15px}
+  .sources li{overflow-wrap:anywhere}
+  .related{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin:0 0 16px}
+  .related a{display:block;background:#fff;border:1px solid var(--rule);border-radius:6px;padding:16px 18px;text-decoration:none}
+  .related a strong{display:block;font-family:var(--serif);font-size:19px;line-height:1.25;margin-bottom:4px}
+  .related a span{color:var(--soft);font-size:15px}
+  .guides{display:grid;gap:20px;max-width:800px;margin-bottom:40px}
+  .guides .card h2{font-family:var(--serif);font-size:24px;line-height:1.25;margin:0 0 8px}
+  .guides .card h2 a{text-decoration:none}
+  .tag{display:inline-block;font-size:13px;font-weight:600;color:var(--acc);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
+  @media (max-width:860px){.split,.grid4,.facts,.offers,.related,.contact-grid{grid-template-columns:1fr}.q{grid-template-columns:1fr}.hero{padding:44px 0 36px}.hero.small{padding:32px 0 24px}}
+  @media (max-width:560px){.wrap{padding:0 16px}header .wrap{padding:20px 16px}header nav.mainnav{width:100%;gap:6px 16px}.brand small{display:block;margin:2px 0 0}.answer,.cta,.card,.offer,form,.quiz,.booking{padding:18px}.quiz{padding:4px 16px 14px}.actions .btn{width:100%}h2.s{font-size:26px}.tbl{overflow-x:visible}.tbl thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.tbl tr{display:block;border-bottom:1px solid var(--rule);padding:6px 0}.tbl tbody tr:last-child{border-bottom:0}.tbl td{display:block;border:0;padding:4px 14px}.tbl td::before{content:attr(data-label);display:block;font-size:12px;font-weight:600;color:var(--soft);text-transform:uppercase;letter-spacing:.04em}.tbl td:first-child{font-weight:600}}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://migravia.fr/#org", "name": "Migravia", "url": "https://migravia.fr/", "logo": "https://migravia.fr/favicon.svg", "founder": {"@type": "Person", "name": "Amine", "jobTitle": "Ingénieur DevOps freelance", "knowsAbout": ["AWS", "Google Cloud", "Microsoft Azure", "Kubernetes", "Terraform"]}, "areaServed": {"@type": "Country", "name": "France"}}, {"@type": "WebSite", "@id": "https://migravia.fr/#site", "url": "https://migravia.fr/", "name": "Migravia", "inLanguage": "fr-FR", "publisher": {"@id": "https://migravia.fr/#org"}}, {"@type": "Article", "@id": "https://migravia.fr/blog/windows-server-2016-fin-de-support/#article", "headline": "Windows Server 2016, fin de support le 12 janvier 2027 : options et calendrier", "description": "Windows Server 2016 perd son support étendu le 12 janvier 2027. Calendrier, mise à niveau vers 2025, réinstallation, ESU payantes : vos options.", "inLanguage": "fr-FR", "datePublished": "2026-11-03", "dateModified": "2026-11-03", "author": {"@type": "Person", "name": "Amine", "jobTitle": "Ingénieur DevOps freelance"}, "publisher": {"@id": "https://migravia.fr/#org"}, "mainEntityOfPage": {"@type": "WebPage", "@id": "https://migravia.fr/blog/windows-server-2016-fin-de-support/", "url": "https://migravia.fr/blog/windows-server-2016-fin-de-support/", "name": "Windows Server 2016 fin de support : options et calendrier", "isPartOf": {"@id": "https://migravia.fr/#site"}, "inLanguage": "fr-FR"}, "url": "https://migravia.fr/blog/windows-server-2016-fin-de-support/"}, {"@type": "BreadcrumbList", "@id": "https://migravia.fr/blog/windows-server-2016-fin-de-support/#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://migravia.fr/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://migravia.fr/blog/"}, {"@type": "ListItem", "position": 3, "name": "Windows Server 2016 : fin de support", "item": "https://migravia.fr/blog/windows-server-2016-fin-de-support/"}]}, {"@type": "FAQPage", "@id": "https://migravia.fr/blog/windows-server-2016-fin-de-support/#faq", "mainEntity": [{"@type": "Question", "name": "Mon serveur Windows Server 2016 s'arrêtera-t-il le 12 janvier 2027 ?", "acceptedAnswer": {"@type": "Answer", "text": "Non, il continuera de fonctionner. Il ne recevra simplement plus de correctifs de sécurité gratuits : chaque faille découverte ensuite restera ouverte, sauf si vous achetez des mises à jour de sécurité étendues."}}, {"@type": "Question", "name": "Combien coûtent les ESU de Windows Server 2016 ?", "acceptedAnswer": {"@type": "Answer", "text": "Microsoft vend les ESU par l'intermédiaire des contrats en volume ou d'Azure Arc, en général sous condition de Software Assurance. Le prix dépend de votre contrat et du nombre de cœurs : demandez un chiffrage à votre revendeur et comparez-le au coût d'une migration."}}, {"@type": "Question", "name": "Faut-il passer à Windows Server 2019, 2022 ou 2025 ?", "acceptedAnswer": {"@type": "Answer", "text": "Windows Server 2025 offre la période de support la plus longue, et Microsoft recommande cette cible. Une version intermédiaire ne se justifie que si une application n'est pas encore certifiée sur 2025."}}, {"@type": "Question", "name": "Peut-on mettre à niveau un contrôleur de domaine ?", "acceptedAnswer": {"@type": "Answer", "text": "C'est possible, mais la pratique la plus sûre consiste à installer un nouveau contrôleur de domaine en Windows Server 2025, à lui transférer les rôles, puis à rétrograder et retirer l'ancien. Microsoft publie une procédure dédiée à la mise à niveau des contrôleurs de domaine."}}]}]}</script>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="brand" href="/">Migravia<small>sortie de VMware à prix fixe</small></a>
+  <nav class="mainnav" aria-label="Navigation principale"><a href="/">Sortie de VMware</a><a href="/windows-server-2016/">Windows Server 2016</a><a href="/blog/" aria-current="page">Guides</a><a href="#contact">Contact</a></nav>
+</div></header>
+
+<main class="wrap">
+  <nav class="crumb" aria-label="Fil d'Ariane"><ol><li><a href="/">Accueil</a></li><li><a href="/blog/">Guides</a></li><li aria-current="page">Windows Server 2016&nbsp;: fin de support</li></ol></nav>
+  <article>
+  <div class="hero small">
+    <h1>Windows Server 2016, fin de support le 12 janvier 2027&nbsp;: options et calendrier</h1>
+    <p class="lede">Le 12 janvier 2027, Windows Server 2016 reçoit son dernier correctif de sécurité gratuit. Voici le calendrier exact, les quatre options possibles et la méthode pour décider serveur par serveur, avant la date.</p>
+    <p class="meta">Par Amine, ingénieur DevOps freelance · <time datetime="2026-11-03">Mis à jour le 3 novembre 2026</time></p>
+  </div>
+  <div class="answer"><p>Le support étendu de Windows Server 2016 se termine le 12 janvier 2027&nbsp;; le support standard a pris fin le 11 janvier 2022. Après cette date, plus de correctifs de sécurité gratuits. Quatre options&nbsp;: mise à niveau sur place vers Windows Server 2025 (prise en charge depuis 2016), réinstallation avec migration des rôles, mises à jour de sécurité étendues (ESU) payantes pendant trois ans au plus, ou remplacement par un service géré. Commencez par l'inventaire, puis par les contrôleurs de domaine.</p></div>
+  <div class="prose">
+
+  <h2 id="calendrier">Le calendrier</h2>
+  <div class="tbl">
+<table>
+<caption>Dates de fin de support à connaître</caption>
+<thead><tr><th scope="col">Date</th><th scope="col">Événement</th><th scope="col">Conséquence</th></tr></thead>
+<tbody>
+<tr><td data-label="Date">11 janvier 2022</td><td data-label="Événement">Fin du support standard de Windows Server 2016</td><td data-label="Conséquence">Plus de nouvelles fonctionnalités, seulement des correctifs de sécurité</td></tr>
+<tr><td data-label="Date">14 juillet 2026</td><td data-label="Événement">Fin du support étendu de SQL Server 2016</td><td data-label="Conséquence">Plus de correctifs gratuits pour les bases installées sur ces serveurs</td></tr>
+<tr><td data-label="Date">12 janvier 2027</td><td data-label="Événement">Fin du support étendu de Windows Server 2016</td><td data-label="Conséquence">Dernier correctif de sécurité gratuit</td></tr>
+<tr><td data-label="Date">13 janvier 2027</td><td data-label="Événement">Début de la facturation des ESU via Azure Arc</td><td data-label="Conséquence">Correctifs critiques et importants, contre paiement</td></tr>
+<tr><td data-label="Date">Jusqu'en 2030</td><td data-label="Événement">Fin de la période ESU maximale</td><td data-label="Conséquence">Plus aucun correctif, même payant</td></tr>
+</tbody>
+</table>
+</div>
+  <p>Microsoft a publié ces dates sur son blog Windows IT Pro et dans la documentation d'Azure Arc. Si vos serveurs Windows Server 2016 hébergent aussi SQL Server 2016, ce dernier est déjà hors support étendu depuis le 14 juillet 2026&nbsp;: les deux chantiers gagnent à être traités ensemble.</p>
+
+  <h2 id="risques">Ce qui se passe après le 12 janvier 2027</h2>
+  <p>Le serveur continue de fonctionner. Mais chaque vulnérabilité découverte après cette date reste ouverte, alors que les correctifs publiés pour les versions supportées indiquent précisément où chercher. Les conséquences dépassent la sécurité&nbsp;:</p>
+  <ul>
+    <li>les éditeurs de logiciels cessent progressivement de supporter leurs applications sur un système hors support&nbsp;;</li>
+    <li>les assureurs cyber et les auditeurs demandent de plus en plus la liste des systèmes hors support et le plan pour en sortir&nbsp;;</li>
+    <li>vos clients soumis à des réglementations comme NIS 2 ou DORA peuvent exiger que leurs fournisseurs n'exploitent pas de systèmes obsolètes.</li>
+  </ul>
+
+  <h2 id="options">Les quatre options</h2>
+  <h3>1. La mise à niveau sur place</h3>
+  <p>Windows Server 2025 accepte la mise à niveau directe depuis Windows Server 2012 R2, 2016, 2019 et 2022, en sautant jusqu'à quatre versions d'un coup pour un serveur hors cluster. Les applications et les données restent en place. C'est rapide pour un serveur simple, mais l'historique du serveur le suit, et tous les rôles ne supportent pas la mise à niveau&nbsp;: Microsoft publie une matrice des rôles et fonctionnalités à consulter avant. Changer de langue ou passer d'une installation Core à une installation avec interface n'est pas possible pendant une mise à niveau.</p>
+  <h3>2. La réinstallation avec migration</h3>
+  <p>Un serveur neuf en Windows Server 2025, puis migration des rôles et des données&nbsp;: partages de fichiers, impression, DHCP, IIS, applications métier. Plus long, mais plus propre. C'est la méthode à privilégier pour les contrôleurs de domaine et les serveurs chargés d'historique. Si vous quittez VMware en même temps, le nouveau serveur peut être installé directement sur la nouvelle plateforme&nbsp;: une seule migration au lieu de deux.</p>
+  <h3>3. Les mises à jour de sécurité étendues</h3>
+  <p>Microsoft propose des ESU pour Windows Server 2016 pendant trois ans au plus. Via Azure Arc, elles se configurent depuis août 2026 et sont facturées à partir du 13 janvier 2027&nbsp;; l'achat suppose en général la Software Assurance. Les ESU ne livrent que les correctifs critiques et importants&nbsp;: ni nouvelles fonctionnalités, ni correctifs non liés à la sécurité. Microsoft n'avait pas publié de grille tarifaire publique au moment de l'annonce, et la presse spécialisée s'attend à un coût élevé&nbsp;: demandez un chiffrage à votre revendeur avant de compter dessus. Les ESU conviennent à une application impossible à migrer à temps, avec une date de sortie écrite, pas à tout un parc.</p>
+  <h3>4. Le remplacement par un service</h3>
+  <p>Certains rôles n'ont plus besoin d'un serveur&nbsp;: messagerie, partage de fichiers, impression ou annuaire peuvent passer à des services gérés. C'est à étudier rôle par rôle, en tenant compte de vos contraintes de localisation des données.</p>
+
+  <h2 id="cas">Les cas qui demandent plus de soin</h2>
+  <ul>
+    <li><strong>SQL Server sur le même serveur.</strong> Mettre à niveau le système sans traiter SQL Server 2016, lui-même hors support étendu, ne règle que la moitié du problème. Vérifiez la version de SQL Server prise en charge par l'éditeur de votre application avant de choisir la cible.</li>
+    <li><strong>Les serveurs Bureau à distance.</strong> Les serveurs RDS cumulent rôles, profils utilisateurs et applications installées&nbsp;: une nouvelle ferme en Windows Server 2025, testée par quelques utilisateurs avant la bascule, est généralement plus sûre qu'une mise à niveau.</li>
+    <li><strong>Les applications métier anciennes.</strong> Certaines ne sont plus maintenues par leur éditeur. Testez-les sur une copie du serveur avant toute intervention, et prévoyez les ESU si le test échoue.</li>
+    <li><strong>Les serveurs physiques.</strong> Le matériel doit être compatible avec Windows Server 2025, pilotes compris. Une machine trop ancienne est souvent l'occasion de virtualiser le serveur plutôt que de le remplacer à l'identique.</li>
+  </ul>
+
+  <h2 id="methode">La méthode, d'ici janvier 2027</h2>
+  <ol class="steps">
+    <li><strong>Inventorier.</strong> Tous les serveurs en Windows Server 2016, leurs rôles, leurs applications, la version de SQL Server, les dépendances. Un export RVTools donne la liste des VM et de leur système en quelques minutes.</li>
+    <li><strong>Classer.</strong> Pour chaque serveur&nbsp;: mise à niveau, réinstallation, service géré ou ESU. Vérifiez auprès des éditeurs que leurs applications sont supportées sur Windows Server 2025.</li>
+    <li><strong>Commencer par l'annuaire.</strong> Les contrôleurs de domaine conditionnent tout le reste&nbsp;: nouveaux contrôleurs en 2025, transfert des rôles, puis retrait des anciens.</li>
+    <li><strong>Migrer par lots.</strong> Les serveurs les moins critiques d'abord. Sauvegarde vérifiée avant chaque intervention, retour arrière prévu.</li>
+    <li><strong>Couvrir le reste.</strong> Pour les serveurs qui ne seront pas prêts au 12 janvier 2027, commandez les ESU à temps et fixez une date de sortie.</li>
+  </ol>
+
+  <div class="cta">
+    <p><strong>Vos serveurs 2016 migrés au forfait.</strong> Diagnostic gratuit sous 5 jours ouvrés, puis migration à partir de 2&nbsp;500&nbsp;€&nbsp;HT pour jusqu'à 5 serveurs&nbsp;: méthode choisie serveur par serveur, tests et documentation inclus.</p>
+    <div class="actions"><a class="btn" href="/windows-server-2016/">Voir l'offre Windows Server 2016</a><a class="btn ghost" href="#contact" data-booking>Prendre rendez-vous (30 min)</a></div>
+  </div>
+
+  <h2 id="faq">Questions fréquentes</h2>
+  <div class="faq">
+    <details><summary>Mon serveur Windows Server 2016 s&#x27;arrêtera-t-il le 12 janvier 2027&nbsp;?</summary><p>Non, il continuera de fonctionner. Il ne recevra simplement plus de correctifs de sécurité gratuits&nbsp;: chaque faille découverte ensuite restera ouverte, sauf si vous achetez des mises à jour de sécurité étendues.</p></details>
+    <details><summary>Combien coûtent les ESU de Windows Server 2016&nbsp;?</summary><p>Microsoft vend les ESU par l&#x27;intermédiaire des contrats en volume ou d&#x27;Azure Arc, en général sous condition de Software Assurance. Le prix dépend de votre contrat et du nombre de cœurs&nbsp;: demandez un chiffrage à votre revendeur et comparez-le au coût d&#x27;une migration.</p></details>
+    <details><summary>Faut-il passer à Windows Server 2019, 2022 ou 2025&nbsp;?</summary><p>Windows Server 2025 offre la période de support la plus longue, et Microsoft recommande cette cible. Une version intermédiaire ne se justifie que si une application n&#x27;est pas encore certifiée sur 2025.</p></details>
+    <details><summary>Peut-on mettre à niveau un contrôleur de domaine&nbsp;?</summary><p>C&#x27;est possible, mais la pratique la plus sûre consiste à installer un nouveau contrôleur de domaine en Windows Server 2025, à lui transférer les rôles, puis à rétrograder et retirer l&#x27;ancien. Microsoft publie une procédure dédiée à la mise à niveau des contrôleurs de domaine.</p></details>
+  </div>
+
+  <h2 id="sources">Sources</h2>
+  <div class="sources">
+  <ol>
+    <li><a href="https://techcommunity.microsoft.com/t5/windows-it-pro-blog/plan-for-windows-server-2016-and-windows-10-2016-ltsb-end-of/ba-p/4496136" rel="noopener">Microsoft Tech Community — Plan for Windows Server 2016 end of support</a> — publié le 20 février 2026, mis à jour en octobre 2026</li>
+    <li><a href="https://learn.microsoft.com/windows-server/get-started/upgrade-overview" rel="noopener">Microsoft Learn — Overview of Windows Server upgrades</a> — chemins de mise à niveau pris en charge</li>
+    <li><a href="https://learn.microsoft.com/en-us/azure/azure-arc/servers/prepare-extended-security-updates" rel="noopener">Microsoft Learn — Prepare to deliver Extended Security Updates (Azure Arc)</a> — ESU Windows Server 2016</li>
+    <li><a href="https://techcommunity.microsoft.com/blog/sqlserver/sql-server-2016-extended-security-updates-stay-protected-while-you-modernize/4529478" rel="noopener">Microsoft Tech Community — SQL Server 2016 Extended Security Updates</a> — fin du support étendu le 14 juillet 2026</li>
+    <li><a href="https://www.theregister.com/2026/02/24/microsoft_windows_support/" rel="noopener">The Register — Microsoft gives Windows laggards the gift of time (24 février 2026)</a> — presse spécialisée</li>
+  </ol>
+  <p class="fine">Sources consultées le 3 novembre 2026. Les conditions des ESU évoluent&nbsp;: vérifiez-les auprès de Microsoft ou de votre revendeur avant toute décision.</p>
+  </div>
+
+  <h2>À lire aussi</h2>
+  <div class="related">
+    <a href="/windows-server-2016/"><strong>Migration Windows Server 2016</strong><span>Diagnostic gratuit et forfait dès 2&nbsp;500&nbsp;€&nbsp;HT.</span></a>
+    <a href="/blog/alternatives-vmware-proxmox-xcp-ng-openshift-hyper-v/"><strong>Alternatives à VMware</strong><span>Migrer les serveurs et quitter VMware d'un même mouvement.</span></a>
+    <a href="/blog/migrer-vmware-vers-proxmox/"><strong>Migrer de VMware vers Proxmox</strong><span>Étapes, pilotes VirtIO et pièges à éviter.</span></a>
+  </div>
+  </div>
+  </article>
+
+
+  <section id="contact">
+    <h2 class="s">Demander le diagnostic gratuit</h2>
+    <p class="sub">Envoyez votre export RVTools ou décrivez votre parc&nbsp;: vous recevez un diagnostic écrit sous 5 jours ouvrés, avec un prix ferme pour la suite. Aucun appel commercial non sollicité.</p>
+    <div class="contact-grid">
+    <div>
+    <form id="f" method="POST" action="https://formspree.io/f/mzeejnkr">
+      <label for="email">E-mail professionnel</label>
+      <input id="email" name="email" type="email" required autocomplete="email">
+      <label for="societe">Entreprise</label>
+      <input id="societe" name="entreprise" type="text" required autocomplete="organization">
+      <label for="profil">Vous êtes</label>
+      <select id="profil" name="profil"><option>PME ou ETI</option><option>Hébergeur</option><option>Infogéreur ou ESN (marque blanche)</option><option>Autre</option></select>
+      <label for="sujet">Votre projet</label>
+      <select id="sujet" name="projet"><option selected>Sortie de VMware</option><option>Migration Windows Server 2016</option><option>Les deux</option></select>
+      <label for="taille">Nombre de VM ou de serveurs</label>
+      <select id="taille" name="taille"><option>Moins de 10</option><option>10 à 50</option><option>51 à 200</option><option>Plus de 200</option><option>Je ne sais pas</option></select>
+      <label for="echeance">Échéance</label>
+      <select id="echeance" name="echeance"><option>Renouvellement VMware dans moins de 6 mois</option><option>Renouvellement dans 6 à 12 mois</option><option>Fin de support Windows Server 2016</option><option>Pas d'échéance précise</option></select>
+      <label for="msg">Votre situation (facultatif)</label>
+      <textarea id="msg" name="message" rows="3"></textarea>
+      <input type="hidden" name="score_diagnostic" id="scoreField" value="">
+      <input type="hidden" name="site" value="migravia.fr">
+      <input type="hidden" name="source" value="migravia-blog-ws2016-v1">
+      <input type="hidden" name="_subject" value="Demande Migravia (blog-ws2016)">
+      <button class="btn" type="submit">Envoyer</button>
+      <p class="fine">Vos informations servent uniquement à répondre à cette demande. L'export RVTools pourra être transmis par un lien sécurisé après ce premier échange.</p>
+    </form>
+    <div class="thanks" id="t"><p><strong>Demande envoyée.</strong> Vous recevez une réponse écrite sous un jour ouvré, avec la marche à suivre pour transmettre votre export RVTools.</p></div>
+    </div>
+    <aside class="booking">
+      <h3>Préférez un échange de vive voix&nbsp;?</h3>
+      <p>Trente minutes en visio pour décrire votre parc, votre échéance de renouvellement et vos contraintes. Vous repartez avec les premières pistes, sans engagement.</p>
+      <a class="btn" href="#contact" data-booking>Prendre rendez-vous (30 min)</a>
+    </aside>
+    </div>
+  </section>
+
+</main>
+
+<footer><div class="wrap">
+<p>Migravia — sortie de VMware et migration de serveurs à prix fixe, pour les PME, ETI, hébergeurs et infogéreurs français. Conduit par Amine, ingénieur DevOps freelance (AWS, GCP, Azure, Kubernetes, Terraform).</p>
+<p><a href="/">Sortie de VMware</a> · <a href="/windows-server-2016/">Migration Windows Server 2016</a> · <a href="/blog/">Guides</a>&nbsp;: <a href="/blog/alternatives-vmware-proxmox-xcp-ng-openshift-hyper-v/">Alternatives à VMware</a> · <a href="/blog/migrer-vmware-vers-proxmox/">Migrer de VMware vers Proxmox</a> · <a href="/blog/windows-server-2016-fin-de-support/">Windows Server 2016&nbsp;: fin de support</a></p>
+<p>VMware, vSphere et ESXi sont des marques de Broadcom&nbsp;; Windows Server et Hyper-V, de Microsoft&nbsp;; Proxmox, de Proxmox Server Solutions&nbsp;; XCP-ng, de Vates&nbsp;; OpenShift, de Red Hat. Migravia n'est affilié à aucun de ces éditeurs. Tous les prix sont fixes et hors taxes.</p>
+</div></footer>
+<script>
+(function(){
+  var f=document.getElementById('f'),t=document.getElementById('t');
+  if(f){f.addEventListener('submit',function(e){e.preventDefault();
+    fetch(f.action,{method:'POST',body:new FormData(f),headers:{Accept:'application/json'}})
+    .then(function(r){if(r.ok){f.style.display='none';t.style.display='block';}else{alert("La demande n'est pas partie. Réessayez dans quelques minutes.");}})
+    .catch(function(){alert("La demande n'est pas partie. Vérifiez votre connexion et réessayez.");});
+  });}
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sortie de VMware à prix fixe : plan et migration | Migravia</title>
+<meta name="description" content="Licences VMware hors de prix depuis Broadcom ? Diagnostic gratuit sous 5 jours, plan de sortie à 1 900 € HT, migration vers Proxmox ou XCP-ng au forfait.">
+<link rel="canonical" href="https://migravia.fr/">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Migravia">
+<meta property="og:title" content="Sortie de VMware à prix fixe : plan et migration | Migravia">
+<meta property="og:description" content="Licences VMware hors de prix depuis Broadcom ? Diagnostic gratuit sous 5 jours, plan de sortie à 1 900 € HT, migration vers Proxmox ou XCP-ng au forfait.">
+<meta property="og:url" content="https://migravia.fr/">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#F5F6F8;--ink:#13202E;--soft:#4F5D6C;--rule:#D2D8E0;--acc:#1E5B4F;--acc-dark:#174840;--acc-tint:#E1EFEA;--ok:#2D6A4F;--ok-tint:#E2F0E8;--warn:#8A5A00;--warn-tint:#F7EDD5;--bad:#9B2C2C;--bad-tint:#F6E1E1;--focus:#2C5FD9;--serif:"Newsreader",Georgia,serif;--sans:"Inter Tight",system-ui,sans-serif}
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;overflow-wrap:break-word}
+  :focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+  a{color:var(--ink)}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+  header .wrap{display:flex;flex-wrap:wrap;gap:10px 16px;justify-content:space-between;align-items:baseline;padding:24px 20px;border-bottom:1px solid var(--rule)}
+  .brand{font-family:var(--serif);font-weight:600;font-size:26px;text-decoration:none;letter-spacing:-.01em}
+  .brand small{font-family:var(--sans);font-weight:400;font-size:14px;color:var(--soft);margin-left:10px}
+  header nav.mainnav{display:flex;flex-wrap:wrap;gap:6px 20px;align-items:baseline}
+  header nav.mainnav a{margin:0;font-weight:500;text-decoration:none;border-bottom:2px solid transparent;padding-bottom:1px}
+  header nav.mainnav a:hover{border-bottom-color:var(--rule)}
+  header nav.mainnav a[aria-current="page"]{border-bottom-color:currentColor}
+  .hero{padding:64px 0 48px;max-width:800px}
+  .hero.small{padding:40px 0 32px}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(31px,4.8vw,50px);line-height:1.1;letter-spacing:-.015em;margin:0 0 20px;overflow-wrap:break-word}
+  .hero.small h1{font-size:clamp(30px,4.4vw,46px);line-height:1.12}
+  .lede{font-size:19px;color:var(--soft);margin:0 0 28px;max-width:62ch}
+  .actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .btn{display:inline-block;background:var(--acc);color:#fff;text-decoration:none;padding:14px 22px;border-radius:4px;border:0;font:inherit;font-weight:600;cursor:pointer;text-align:center}
+  .btn:hover{background:var(--acc-dark)}
+  .btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink);padding:12px 20px}
+  .btn.ghost:hover{background:#fff}
+  section{padding:56px 0;border-top:1px solid var(--rule)}
+  h2.s{font-family:var(--serif);font-weight:600;font-size:30px;line-height:1.2;margin:0 0 10px}
+  .sub{color:var(--soft);max-width:64ch;margin:0 0 28px}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .grid4{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .card{background:#fff;border:1px solid var(--rule);border-radius:6px;padding:24px}
+  .card h3{font-family:var(--serif);font-size:21px;margin:0 0 10px}
+  .card p{margin:0 0 10px}.card p:last-child{margin-bottom:0}
+  .card ul{padding-left:18px;margin:0}.card li{margin-bottom:7px}
+  .card.paper{background:#fbfbfb}
+  .card.real{border:2px solid var(--acc);background:var(--acc-tint)}
+  .facts{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .fact{background:#fff;border:1px solid var(--rule);border-left:5px solid var(--acc);border-radius:0 6px 6px 0;padding:18px 20px}
+  .fact strong{display:block;font-family:var(--serif);font-size:20px;line-height:1.25;margin-bottom:4px}
+  .fact p{margin:0;font-size:16px}
+  .fact .src{display:block;font-size:13px;color:var(--soft);margin-top:6px}
+  .quiz{background:#fff;border:1px solid var(--rule);border-radius:6px;padding:8px 24px 20px}
+  .q{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;padding:14px 0;border-bottom:1px solid var(--rule)}
+  .q:last-of-type{border-bottom:0}
+  .q p{margin:0}.q small{display:block;color:var(--soft);font-size:13px;margin-top:2px}
+  .seg{display:inline-flex;border:1px solid var(--rule);border-radius:4px;overflow:hidden}
+  .seg button{font:inherit;font-size:14px;border:0;background:#fff;padding:7px 12px;cursor:pointer;color:var(--ink);border-left:1px solid var(--rule)}
+  .seg button:first-child{border-left:0}
+  .seg button[aria-pressed="true"].y{background:var(--ok);color:#fff}
+  .seg button[aria-pressed="true"].p{background:var(--warn);color:#fff}
+  .seg button[aria-pressed="true"].n{background:var(--bad);color:#fff}
+  .result{margin-top:22px;border-radius:6px;padding:22px 24px;border:1px solid var(--rule);background:#fff}
+  .result.bad{background:var(--bad-tint);border-color:var(--bad)}
+  .result.mid{background:var(--warn-tint);border-color:var(--warn)}
+  .result.good{background:var(--ok-tint);border-color:var(--ok)}
+  .result h3{font-family:var(--serif);font-size:24px;margin:0 0 8px}
+  .result ul{margin:10px 0 0;padding-left:18px}
+  .offers{display:grid;grid-template-columns:repeat(var(--cols,3),1fr);gap:20px}
+  .offer{background:#fff;border:1px solid var(--rule);border-radius:6px;padding:24px;display:flex;flex-direction:column}
+  .offer.main{border:2px solid var(--acc);background:var(--acc-tint)}
+  .offer h3{font-family:var(--serif);font-size:22px;margin:0 0 4px}
+  .offer .price{font-size:26px;font-weight:600;margin:6px 0 12px;line-height:1.25}
+  .offer .price span{display:block;font-size:15px;font-weight:400;color:var(--soft)}
+  .offer ul{padding-left:18px;margin:0 0 16px}.offer li{margin-bottom:6px}
+  .offer .btn{margin-top:auto;align-self:flex-start}
+  ol.steps{counter-reset:s;list-style:none;padding:0;margin:0 0 8px;max-width:720px}
+  ol.steps li{counter-increment:s;position:relative;padding:0 0 22px 52px}
+  ol.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:34px;height:34px;border-radius:50%;border:2px solid var(--acc);display:grid;place-items:center;font-weight:600;color:var(--acc)}
+  ol.steps strong{display:block}
+  .guarantee{background:#fff;border-left:5px solid var(--acc);padding:22px 26px;max-width:760px;border-radius:0 6px 6px 0}
+  .guarantee p{margin:0 0 10px}.guarantee p:last-child{margin:0}
+  form{background:#fff;border:1px solid var(--rule);border-radius:6px;padding:26px;max-width:620px}
+  label{display:block;font-weight:500;margin-bottom:6px}
+  input,select,textarea{width:100%;max-width:100%;font:inherit;font-size:16px;padding:10px 12px;border:1px solid #B5BFCC;border-radius:4px;background:#fff;color:var(--ink);margin-bottom:16px}
+  .contact-grid{display:grid;grid-template-columns:minmax(0,620px) minmax(0,1fr);gap:28px;align-items:start}
+  .booking{background:#fff;border:1px solid var(--rule);border-radius:6px;padding:22px 24px}
+  .booking h3{font-family:var(--serif);font-size:21px;margin:0 0 8px}
+  .booking p{margin:0 0 14px}
+  .fine{font-size:14px;color:var(--soft)}
+  .thanks{display:none;background:#fff;border:1px solid var(--rule);border-radius:6px;padding:26px;max-width:620px}
+  footer{border-top:1px solid var(--rule);padding:30px 0 48px;color:var(--soft);font-size:14px}
+  footer p{margin:0 0 10px}
+  .faq{max-width:780px}
+  .faq details{border-bottom:1px solid var(--rule);padding:14px 0}
+  .faq summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:16px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";font-weight:400;font-size:22px;line-height:1}
+  .faq details[open] summary::after{content:"\2212"}
+  .faq details p{margin:10px 0 0;color:var(--soft)}
+  /* guides */
+  .crumb{font-size:14px;color:var(--soft);padding-top:22px}
+  .crumb ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:4px}
+  .crumb li+li::before{content:"\203A";margin:0 6px;color:var(--soft)}
+  .crumb a{color:var(--soft)}
+  .meta{font-size:14px;color:var(--soft);margin:0}
+  .answer{background:var(--acc-tint);border:2px solid var(--acc);border-radius:6px;padding:20px 24px;max-width:760px;margin:0 0 8px}
+  .answer p{margin:0}
+  .prose{max-width:740px;padding-bottom:24px}
+  .prose h2{font-family:var(--serif);font-weight:600;font-size:clamp(25px,3.2vw,30px);line-height:1.2;margin:48px 0 12px;padding-top:28px;border-top:1px solid var(--rule)}
+  .prose h3{font-family:var(--serif);font-weight:600;font-size:21px;line-height:1.3;margin:28px 0 8px}
+  .prose p,.prose ul,.prose ol{margin:0 0 16px}
+  .prose ul,.prose ol:not(.steps){padding-left:22px}
+  .prose li{margin-bottom:6px}
+  .prose code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em;background:#fff;border:1px solid var(--rule);border-radius:3px;padding:1px 5px;overflow-wrap:anywhere}
+  .prose pre{background:#13202E;color:#E8EDF3;border-radius:6px;padding:16px 18px;overflow-x:auto;font-size:14px;line-height:1.55;margin:0 0 18px;max-width:100%}
+  .prose pre code{background:none;border:0;padding:0;color:inherit;font-size:inherit;overflow-wrap:normal}
+  .tbl{overflow-x:auto;margin:0 0 20px;border:1px solid var(--rule);border-radius:6px;background:#fff}
+  .tbl table{border-collapse:collapse;width:100%;font-size:15px;line-height:1.5}
+  .tbl caption{text-align:left;font-size:14px;color:var(--soft);padding:12px 14px 0}
+  .tbl th,.tbl td{text-align:left;vertical-align:top;padding:11px 14px;border-bottom:1px solid var(--rule)}
+  .tbl thead th{background:var(--acc-tint);font-weight:600}
+  .tbl tr:last-child td{border-bottom:0}
+  .prose ul.check{list-style:none;padding-left:0}
+  ul.check li{position:relative;padding-left:30px}
+  ul.check li::before{content:"";position:absolute;left:2px;top:.32em;width:16px;height:16px;border:2px solid var(--acc);border-radius:3px;background:#fff}
+  .cta{background:#fff;border:1px solid var(--rule);border-left:5px solid var(--acc);border-radius:0 6px 6px 0;padding:22px 26px;margin:32px 0 8px}
+  .cta p{margin:0 0 14px}
+  .note{background:var(--warn-tint);border-left:5px solid var(--warn);padding:14px 18px;border-radius:0 6px 6px 0;font-size:15px}
+  .sources ol{padding-left:22px;font-size:15px}
+  .sources li{overflow-wrap:anywhere}
+  .related{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin:0 0 16px}
+  .related a{display:block;background:#fff;border:1px solid var(--rule);border-radius:6px;padding:16px 18px;text-decoration:none}
+  .related a strong{display:block;font-family:var(--serif);font-size:19px;line-height:1.25;margin-bottom:4px}
+  .related a span{color:var(--soft);font-size:15px}
+  .guides{display:grid;gap:20px;max-width:800px;margin-bottom:40px}
+  .guides .card h2{font-family:var(--serif);font-size:24px;line-height:1.25;margin:0 0 8px}
+  .guides .card h2 a{text-decoration:none}
+  .tag{display:inline-block;font-size:13px;font-weight:600;color:var(--acc);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
+  @media (max-width:860px){.split,.grid4,.facts,.offers,.related,.contact-grid{grid-template-columns:1fr}.q{grid-template-columns:1fr}.hero{padding:44px 0 36px}.hero.small{padding:32px 0 24px}}
+  @media (max-width:560px){.wrap{padding:0 16px}header .wrap{padding:20px 16px}header nav.mainnav{width:100%;gap:6px 16px}.brand small{display:block;margin:2px 0 0}.answer,.cta,.card,.offer,form,.quiz,.booking{padding:18px}.quiz{padding:4px 16px 14px}.actions .btn{width:100%}h2.s{font-size:26px}.tbl{overflow-x:visible}.tbl thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.tbl tr{display:block;border-bottom:1px solid var(--rule);padding:6px 0}.tbl tbody tr:last-child{border-bottom:0}.tbl td{display:block;border:0;padding:4px 14px}.tbl td::before{content:attr(data-label);display:block;font-size:12px;font-weight:600;color:var(--soft);text-transform:uppercase;letter-spacing:.04em}.tbl td:first-child{font-weight:600}}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://migravia.fr/#org", "name": "Migravia", "url": "https://migravia.fr/", "logo": "https://migravia.fr/favicon.svg", "founder": {"@type": "Person", "name": "Amine", "jobTitle": "Ingénieur DevOps freelance", "knowsAbout": ["AWS", "Google Cloud", "Microsoft Azure", "Kubernetes", "Terraform"]}, "areaServed": {"@type": "Country", "name": "France"}}, {"@type": "WebSite", "@id": "https://migravia.fr/#site", "url": "https://migravia.fr/", "name": "Migravia", "inLanguage": "fr-FR", "publisher": {"@id": "https://migravia.fr/#org"}}, {"@type": "WebPage", "@id": "https://migravia.fr/", "url": "https://migravia.fr/", "name": "Sortie de VMware à prix fixe : plan et migration | Migravia", "description": "Licences VMware hors de prix depuis Broadcom ? Diagnostic gratuit sous 5 jours, plan de sortie à 1 900 € HT, migration vers Proxmox ou XCP-ng au forfait.", "inLanguage": "fr-FR", "isPartOf": {"@id": "https://migravia.fr/#site"}, "about": {"@id": "https://migravia.fr/#service"}}, {"@type": "Service", "@id": "https://migravia.fr/#service", "name": "Sortie de VMware : plan de sortie et migration au forfait", "serviceType": "Migration de virtualisation", "provider": {"@id": "https://migravia.fr/#org"}, "areaServed": {"@type": "Country", "name": "France"}, "url": "https://migravia.fr/", "offers": [{"@type": "Offer", "name": "Diagnostic écrit gratuit", "priceCurrency": "EUR", "url": "https://migravia.fr/#contact", "description": "Analyse d'un export RVTools sous 5 jours ouvrés", "price": "0", "priceSpecification": {"@type": "UnitPriceSpecification", "priceCurrency": "EUR", "valueAddedTaxIncluded": false, "price": "0"}}, {"@type": "Offer", "name": "Plan de sortie", "priceCurrency": "EUR", "url": "https://migravia.fr/#contact", "description": "Inventaire, devis Broadcom comparé sur 3 ans, cible recommandée, plan de bascule", "price": "1900", "priceSpecification": {"@type": "UnitPriceSpecification", "priceCurrency": "EUR", "valueAddedTaxIncluded": false, "price": "1900"}}, {"@type": "Offer", "name": "Migration au forfait (jusqu'à 50 VM)", "priceCurrency": "EUR", "url": "https://migravia.fr/#contact", "description": "À partir de 9 000 € HT pour jusqu'à 50 VM, au-delà sur devis", "priceSpecification": {"@type": "UnitPriceSpecification", "priceCurrency": "EUR", "valueAddedTaxIncluded": false, "minPrice": "9000"}}, {"@type": "Offer", "name": "Marque blanche pour infogéreurs", "priceCurrency": "EUR", "url": "https://migravia.fr/#contact", "description": "Sur devis"}]}, {"@type": "FAQPage", "@id": "https://migravia.fr/#faq", "mainEntity": [{"@type": "Question", "name": "Mes licences perpétuelles VMware sont-elles encore valables ?", "acceptedAnswer": {"@type": "Answer", "text": "Une licence perpétuelle déjà achetée reste utilisable, mais Broadcom a arrêté la vente de licences perpétuelles et de leur support : sans contrat de support actif, vous n'avez plus de correctifs ni de mises à jour. C'est ce qui rend la question du renouvellement incontournable."}}, {"@type": "Question", "name": "Qu'est-ce que l'export RVTools et pourquoi le demander ?", "acceptedAnswer": {"@type": "Answer", "text": "RVTools est un utilitaire gratuit qui lit l'inventaire de vCenter (VM, processeurs, mémoire, disques, réseaux, versions d'outils) et l'exporte dans un classeur Excel. Il fonctionne en lecture seule : c'est la façon la plus rapide de chiffrer une sortie sans ouvrir d'accès à votre infrastructure."}}, {"@type": "Question", "name": "Faut-il forcément quitter VMware ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. Le plan de sortie compare le devis Broadcom à l'alternative sur trois ans. Si rester chez VMware coûte moins cher ou présente moins de risques pour votre contexte, le plan le dit, et vous l'utilisez pour négocier."}}, {"@type": "Question", "name": "Quelle alternative choisir : Proxmox, XCP-ng, OpenShift ou Hyper-V ?", "acceptedAnswer": {"@type": "Answer", "text": "Cela dépend de vos compétences internes, de vos sauvegardes, de vos licences Microsoft et de vos projets de conteneurs. Proxmox VE et XCP-ng conviennent à la plupart des PME ; Hyper-V s'impose souvent quand le parc est très Windows ; OpenShift Virtualization a du sens si vous exploitez déjà Kubernetes."}}, {"@type": "Question", "name": "Que comprend la migration au forfait à partir de 9 000 € HT ?", "acceptedAnswer": {"@type": "Answer", "text": "La bascule de jusqu'à 50 VM vers la cible retenue dans le plan de sortie : préparation des VM, migration par vagues, tests avec vos équipes, retour arrière prévu à chaque vague et documentation d'exploitation. Au-delà de 50 VM, ou avec des contraintes particulières, le prix est fixé sur devis avant de commencer."}}, {"@type": "Question", "name": "Proposez-vous la marque blanche aux infogéreurs ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. Les hébergeurs et infogéreurs qui doivent faire migrer leurs propres clients peuvent sous-traiter le diagnostic, le plan ou la migration, livrés sous leur nom. Le prix est fixé sur devis selon le volume."}}]}]}</script>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="brand" href="/">Migravia<small>sortie de VMware à prix fixe</small></a>
+  <nav class="mainnav" aria-label="Navigation principale"><a href="/" aria-current="page">Sortie de VMware</a><a href="/windows-server-2016/">Windows Server 2016</a><a href="/blog/">Guides</a><a href="#contact">Contact</a></nav>
+</div></header>
+
+<main class="wrap">
+  <div class="hero">
+    <h1>Votre devis VMware a explosé&nbsp;? Sortez-en, à prix fixe.</h1>
+    <p class="lede">Depuis le rachat de VMware par Broadcom, les licences perpétuelles ne sont plus vendues et le catalogue se résume à quatre offres groupées sur abonnement. Migravia chiffre votre sortie, choisit la cible avec vous (Proxmox VE, XCP-ng, OpenShift Virtualization ou Hyper-V) et réalise la bascule au forfait. Pour les PME, ETI, hébergeurs et infogéreurs.</p>
+    <div class="actions"><a class="btn" href="#contact">Demander le diagnostic gratuit</a><a class="btn ghost" href="#contact" data-booking>Prendre rendez-vous (30 min)</a></div>
+  </div>
+
+  <section>
+    <h2 class="s">Ce qui a changé chez VMware depuis Broadcom</h2>
+    <p class="sub">Des faits publiés, datés et sourcés. Les liens complets sont dans le <a href="/blog/alternatives-vmware-proxmox-xcp-ng-openshift-hyper-v/">guide des alternatives</a>.</p>
+    <div class="facts">
+      <div class="fact"><strong>Fin des licences perpétuelles</strong><p>Broadcom a arrêté la vente des licences perpétuelles et réduit le catalogue à quatre offres groupées&nbsp;: VMware Cloud Foundation, vSphere Foundation, vSphere Standard et vSphere Essentials Plus.</p><span class="src">Annonce de décembre 2023</span></div>
+      <div class="fact"><strong>Majoration de 20&nbsp;% en cas de retard</strong><p>Un renouvellement signé après l'échéance peut être majoré d'environ 20&nbsp;%. Attendre le dernier moment coûte cher.</p><span class="src">Rapporté par la presse spécialisée fin 2024</span></div>
+      <div class="fact"><strong>Fin du programme VCSP</strong><p>En janvier 2026, Broadcom a annoncé la fin de son programme VMware Cloud Service Provider en Europe, qui permettait aux hébergeurs de revendre VMware.</p><span class="src">Plainte du CISPE, mars 2026</span></div>
+      <div class="fact"><strong>Des hausses de 800 à 1&nbsp;500&nbsp;%</strong><p>Le CISPE, association des fournisseurs cloud européens, fait état de hausses de 800 à 1&nbsp;500&nbsp;%, et a déposé une plainte auprès de la Commission européenne en mars 2026.</p><span class="src">CISPE, mai 2025 et mars 2026</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="s">Quatre alternatives sérieuses</h2>
+    <p class="sub">Aucune n'est meilleure dans l'absolu. Le plan de sortie retient celle qui correspond à vos compétences, vos sauvegardes et vos licences, avec un coût sur trois ans.</p>
+    <div class="grid4">
+      <div class="card"><h3>Proxmox VE</h3><p>Hyperviseur KVM open source, support par abonnement optionnel. Un assistant importe les VM directement depuis ESXi ou vCenter.</p><p class="fine">Pour les PME et ETI qui veulent sortir vite, avec une équipe à l'aise sous Linux.</p></div>
+      <div class="card"><h3>XCP-ng</h3><p>Hyperviseur Xen open source, administré avec Xen Orchestra, édité par la société française Vates. Import VMware intégré, à chaud puis à froid.</p><p class="fine">Pour les hébergeurs et les parcs qui veulent un support éditeur européen.</p></div>
+      <div class="card"><h3>OpenShift Virtualization</h3><p>Les VM tournent sur Kubernetes, à côté des conteneurs. Le Migration Toolkit for Virtualization importe les VM depuis vSphere.</p><p class="fine">Pour les organisations qui exploitent déjà Kubernetes ou OpenShift.</p></div>
+      <div class="card"><h3>Hyper-V</h3><p>Inclus dans Windows Server. Microsoft propose un outil de conversion des VM VMware dans Windows Admin Center, annoncé en préversion en août 2025.</p><p class="fine">Pour les parcs très Windows, déjà couverts par des licences Datacenter.</p></div>
+    </div>
+  </section>
+
+  <section id="diagnostic">
+    <h2 class="s">Diagnostic express&nbsp;: votre sortie est-elle urgente&nbsp;?</h2>
+    <p class="sub">Huit questions, deux minutes. Rien n'est envoyé ni enregistré tant que vous ne remplissez pas le formulaire de contact.</p>
+    <div class="quiz" id="quiz"></div>
+    <div class="result" id="res" aria-live="polite"></div>
+  </section>
+
+  <section id="offre">
+    <h2 class="s">Quatre offres, des prix connus d'avance</h2>
+    <p class="sub">Accès en lecture seule pour le diagnostic et le plan. Rien n'est modifié en production sans votre accord écrit. Prix fixes, hors taxes.</p>
+    <div class="offers" style="--cols:2">
+      <div class="offer">
+        <h3>Diagnostic écrit</h3>
+        <p class="price">Gratuit <span>sous 5 jours ouvrés</span></p>
+        <ul>
+          <li>Analyse de votre export RVTools</li>
+          <li>Points bloquants&nbsp;: vSAN, NSX, VM anciennes, disques partagés</li>
+          <li>Cibles envisageables et ordre de grandeur de l'effort</li>
+        </ul>
+        <a class="btn ghost" href="#contact">Envoyer mon export</a>
+      </div>
+      <div class="offer main">
+        <h3>Plan de sortie</h3>
+        <p class="price">1&nbsp;900&nbsp;€&nbsp;HT <span>prix fixe</span></p>
+        <ul>
+          <li>Inventaire complet des VM, dépendances et sauvegardes</li>
+          <li>Devis Broadcom comparé à l'alternative sur 3 ans</li>
+          <li>Cible recommandée et justifiée</li>
+          <li>Plan de bascule par vagues, avec retour arrière</li>
+        </ul>
+        <a class="btn" href="#contact">Commander le plan</a>
+      </div>
+      <div class="offer">
+        <h3>Migration au forfait</h3>
+        <p class="price">À partir de 9&nbsp;000&nbsp;€&nbsp;HT <span>jusqu'à 50 VM, au-delà sur devis</span></p>
+        <ul>
+          <li>Installation et durcissement de la plateforme cible</li>
+          <li>Bascule par vagues, testée avec vos équipes</li>
+          <li>Sauvegardes vérifiées par une restauration</li>
+          <li>Documentation d'exploitation remise</li>
+        </ul>
+        <a class="btn ghost" href="#contact">Obtenir un prix ferme</a>
+      </div>
+      <div class="offer">
+        <h3>Marque blanche</h3>
+        <p class="price">Sur devis <span>hébergeurs et infogéreurs</span></p>
+        <ul>
+          <li>Diagnostic, plan ou migration livrés sous votre nom</li>
+          <li>Pour faire migrer vos propres clients après la fin du programme VCSP</li>
+          <li>Prix par lot, fixé avant de commencer</li>
+        </ul>
+        <a class="btn ghost" href="#contact">En parler</a>
+      </div>
+    </div>
+    <div class="actions" style="margin-top:24px"><a class="btn ghost" href="#contact" data-booking>Prendre rendez-vous (30 min)</a></div>
+  </section>
+
+  <section>
+    <h2 class="s">Comment ça se passe</h2>
+    <ol class="steps">
+      <li><strong>Export RVTools.</strong> Vous lancez RVTools sur votre vCenter, en lecture seule, et nous transmettez le classeur. Aucun accès n'est ouvert à ce stade.</li>
+      <li><strong>Diagnostic écrit sous 5 jours ouvrés.</strong> Les points bloquants, les cibles possibles et le prix ferme du plan de sortie.</li>
+      <li><strong>Plan de sortie.</strong> Inventaire détaillé, comparaison chiffrée sur trois ans avec votre devis Broadcom, cible recommandée, plan de bascule. Vous pouvez l'exécuter vous-même ou vous en servir pour négocier.</li>
+      <li><strong>Migration par vagues.</strong> D'abord les VM les moins critiques, puis le reste. Chaque vague a sa fenêtre, ses tests et son retour arrière. L'ancienne plateforme reste disponible jusqu'à la validation finale.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2 class="s">Ce que Migravia s'engage à faire, et à ne pas faire</h2>
+    <div class="guarantee">
+      <p>Le prix est fixé par écrit avant de commencer et ne bouge pas, sauf changement de périmètre que vous validez. Si le plan de sortie conclut que rester chez VMware est le meilleur choix pour vous, il le dit.</p>
+      <p>Migravia est l'activité d'Amine, ingénieur DevOps freelance (AWS, GCP, Azure, Kubernetes, Terraform). Ce n'est ni un revendeur Broadcom, ni un cabinet d'avocats&nbsp;: la lecture de vos contrats de licence reste l'affaire de votre juriste ou de votre revendeur.</p>
+    </div>
+  </section>
+
+  <section class="faq-wrap" id="faq">
+    <h2 class="s">Questions fréquentes</h2>
+    <div class="faq">
+      <details><summary>Mes licences perpétuelles VMware sont-elles encore valables&nbsp;?</summary><p>Une licence perpétuelle déjà achetée reste utilisable, mais Broadcom a arrêté la vente de licences perpétuelles et de leur support&nbsp;: sans contrat de support actif, vous n&#x27;avez plus de correctifs ni de mises à jour. C&#x27;est ce qui rend la question du renouvellement incontournable.</p></details>
+      <details><summary>Qu&#x27;est-ce que l&#x27;export RVTools et pourquoi le demander&nbsp;?</summary><p>RVTools est un utilitaire gratuit qui lit l&#x27;inventaire de vCenter (VM, processeurs, mémoire, disques, réseaux, versions d&#x27;outils) et l&#x27;exporte dans un classeur Excel. Il fonctionne en lecture seule&nbsp;: c&#x27;est la façon la plus rapide de chiffrer une sortie sans ouvrir d&#x27;accès à votre infrastructure.</p></details>
+      <details><summary>Faut-il forcément quitter VMware&nbsp;?</summary><p>Non. Le plan de sortie compare le devis Broadcom à l&#x27;alternative sur trois ans. Si rester chez VMware coûte moins cher ou présente moins de risques pour votre contexte, le plan le dit, et vous l&#x27;utilisez pour négocier.</p></details>
+      <details><summary>Quelle alternative choisir&nbsp;: Proxmox, XCP-ng, OpenShift ou Hyper-V&nbsp;?</summary><p>Cela dépend de vos compétences internes, de vos sauvegardes, de vos licences Microsoft et de vos projets de conteneurs. Proxmox VE et XCP-ng conviennent à la plupart des PME&nbsp;; Hyper-V s&#x27;impose souvent quand le parc est très Windows&nbsp;; OpenShift Virtualization a du sens si vous exploitez déjà Kubernetes.</p></details>
+      <details><summary>Que comprend la migration au forfait à partir de 9&nbsp;000&nbsp;€&nbsp;HT&nbsp;?</summary><p>La bascule de jusqu&#x27;à 50 VM vers la cible retenue dans le plan de sortie&nbsp;: préparation des VM, migration par vagues, tests avec vos équipes, retour arrière prévu à chaque vague et documentation d&#x27;exploitation. Au-delà de 50 VM, ou avec des contraintes particulières, le prix est fixé sur devis avant de commencer.</p></details>
+      <details><summary>Proposez-vous la marque blanche aux infogéreurs&nbsp;?</summary><p>Oui. Les hébergeurs et infogéreurs qui doivent faire migrer leurs propres clients peuvent sous-traiter le diagnostic, le plan ou la migration, livrés sous leur nom. Le prix est fixé sur devis selon le volume.</p></details>
+    </div>
+  </section>
+
+
+  <section id="contact">
+    <h2 class="s">Demander le diagnostic gratuit</h2>
+    <p class="sub">Envoyez votre export RVTools ou décrivez votre parc&nbsp;: vous recevez un diagnostic écrit sous 5 jours ouvrés, avec un prix ferme pour la suite. Aucun appel commercial non sollicité.</p>
+    <div class="contact-grid">
+    <div>
+    <form id="f" method="POST" action="https://formspree.io/f/mzeejnkr">
+      <label for="email">E-mail professionnel</label>
+      <input id="email" name="email" type="email" required autocomplete="email">
+      <label for="societe">Entreprise</label>
+      <input id="societe" name="entreprise" type="text" required autocomplete="organization">
+      <label for="profil">Vous êtes</label>
+      <select id="profil" name="profil"><option>PME ou ETI</option><option>Hébergeur</option><option>Infogéreur ou ESN (marque blanche)</option><option>Autre</option></select>
+      <label for="sujet">Votre projet</label>
+      <select id="sujet" name="projet"><option selected>Sortie de VMware</option><option>Migration Windows Server 2016</option><option>Les deux</option></select>
+      <label for="taille">Nombre de VM ou de serveurs</label>
+      <select id="taille" name="taille"><option>Moins de 10</option><option>10 à 50</option><option>51 à 200</option><option>Plus de 200</option><option>Je ne sais pas</option></select>
+      <label for="echeance">Échéance</label>
+      <select id="echeance" name="echeance"><option>Renouvellement VMware dans moins de 6 mois</option><option>Renouvellement dans 6 à 12 mois</option><option>Fin de support Windows Server 2016</option><option>Pas d'échéance précise</option></select>
+      <label for="msg">Votre situation (facultatif)</label>
+      <textarea id="msg" name="message" rows="3"></textarea>
+      <input type="hidden" name="score_diagnostic" id="scoreField" value="">
+      <input type="hidden" name="site" value="migravia.fr">
+      <input type="hidden" name="source" value="migravia-vmware-v1">
+      <input type="hidden" name="_subject" value="Demande Migravia (vmware)">
+      <button class="btn" type="submit">Envoyer</button>
+      <p class="fine">Vos informations servent uniquement à répondre à cette demande. L'export RVTools pourra être transmis par un lien sécurisé après ce premier échange.</p>
+    </form>
+    <div class="thanks" id="t"><p><strong>Demande envoyée.</strong> Vous recevez une réponse écrite sous un jour ouvré, avec la marche à suivre pour transmettre votre export RVTools.</p></div>
+    </div>
+    <aside class="booking">
+      <h3>Préférez un échange de vive voix&nbsp;?</h3>
+      <p>Trente minutes en visio pour décrire votre parc, votre échéance de renouvellement et vos contraintes. Vous repartez avec les premières pistes, sans engagement.</p>
+      <a class="btn" href="#contact" data-booking>Prendre rendez-vous (30 min)</a>
+    </aside>
+    </div>
+  </section>
+
+</main>
+
+<footer><div class="wrap">
+<p>Migravia — sortie de VMware et migration de serveurs à prix fixe, pour les PME, ETI, hébergeurs et infogéreurs français. Conduit par Amine, ingénieur DevOps freelance (AWS, GCP, Azure, Kubernetes, Terraform).</p>
+<p><a href="/">Sortie de VMware</a> · <a href="/windows-server-2016/">Migration Windows Server 2016</a> · <a href="/blog/">Guides</a>&nbsp;: <a href="/blog/alternatives-vmware-proxmox-xcp-ng-openshift-hyper-v/">Alternatives à VMware</a> · <a href="/blog/migrer-vmware-vers-proxmox/">Migrer de VMware vers Proxmox</a> · <a href="/blog/windows-server-2016-fin-de-support/">Windows Server 2016&nbsp;: fin de support</a></p>
+<p>VMware, vSphere et ESXi sont des marques de Broadcom&nbsp;; Windows Server et Hyper-V, de Microsoft&nbsp;; Proxmox, de Proxmox Server Solutions&nbsp;; XCP-ng, de Vates&nbsp;; OpenShift, de Red Hat. Migravia n'est affilié à aucun de ces éditeurs. Tous les prix sont fixes et hors taxes.</p>
+</div></footer>
+<script>
+(function(){
+  var Q=[["Votre contrat de support VMware arrive à échéance dans moins de six mois.", "Renouvellement proche", "Une majoration de 20&nbsp;% a été signalée en cas de renouvellement tardif", true], ["Une partie de vos hôtes tourne encore en vSphere 7.", "vSphere 7 sans support général", "Fin du support général le 2 octobre 2025", true], ["Vous utilisez vSAN, NSX ou Horizon.", "Dépendances vSAN, NSX ou Horizon", "Ces briques allongent et compliquent la sortie", true], ["Vos VM et leurs dépendances (applications, flux, sauvegardes) sont inventoriées.", "Inventaire complet", "Base de tout chiffrage sérieux", false], ["Votre outil de sauvegarde sait protéger la plateforme cible envisagée.", "Sauvegarde compatible avec la cible", "À vérifier avant toute migration", false], ["Votre équipe sait administrer un hyperviseur autre que VMware (Linux, KVM, Hyper-V).", "Compétences sur la cible", "Conditionne le choix de l'alternative", false], ["Une fenêtre d'interruption courte, VM par VM, est acceptable pour vos métiers.", "Fenêtres de bascule", "Une migration à froid est plus simple et plus sûre", false], ["Aucune VM ne tourne encore sous Windows Server 2016 ou plus ancien.", "Systèmes en fin de support", "Fin du support étendu de Windows Server 2016 le 12 janvier 2027", false]],R={"hi": 3, "mid": 3, "head": {"bad": "Votre sortie doit être planifiée maintenant", "mid": "Une sortie faisable, à préparer avec méthode", "good": "Votre parc est prêt pour une sortie sereine"}, "text": {"bad": "Plusieurs facteurs combinent urgence et complexité. Sans plan chiffré, vous risquez de renouveler dans l'urgence, au prix fixé par Broadcom.", "mid": "Rien de bloquant, mais quelques points à traiter avant de choisir une cible et de signer quoi que ce soit.", "good": "Les conditions sont réunies. Reste à comparer le devis Broadcom à l'alternative pour décider en connaissance de cause."}, "riskLabel": "Points qui pèsent sur la décision&nbsp;:", "partLabel": "Points à préciser&nbsp;:", "cta": "Le diagnostic gratuit chiffre ces points à partir de votre export RVTools. <a href=\"#contact\">Le demander</a>."};
+  var quiz=document.getElementById('quiz'),res=document.getElementById('res'),ans={};
+  if(quiz){
+  Q.forEach(function(q,i){
+    var d=document.createElement('div');d.className='q';
+    d.innerHTML='<p>'+q[0]+'<small>'+q[2]+'</small></p><div class="seg" role="group" aria-label="Réponse à la question '+(i+1)+'"><button type="button" class="y" data-v="2" aria-pressed="false">Oui</button><button type="button" class="p" data-v="1" aria-pressed="false">En partie</button><button type="button" class="n" data-v="0" aria-pressed="false">Non</button></div>';
+    d.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){
+      d.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed','false')});
+      b.setAttribute('aria-pressed','true');ans[i]=+b.dataset.v;render();});});
+    quiz.appendChild(d);
+  });
+  function render(){
+    var n=Object.keys(ans).length;
+    if(n<Q.length){res.className='result';res.innerHTML='<p>Répondez aux '+Q.length+' questions pour voir le résultat ('+n+' sur '+Q.length+').</p>';return;}
+    var risk=[],part=[];
+    Q.forEach(function(q,i){var bad=q[3]?ans[i]===2:ans[i]===0;var mid=ans[i]===1;if(bad)risk.push(q[1]);else if(mid)part.push(q[1]);});
+    var lvl=risk.length>=R.hi?'bad':(risk.length+part.length>=R.mid?'mid':'good');
+    var html='<h3>'+R.head[lvl]+'</h3><p>'+R.text[lvl]+'</p>';
+    if(risk.length)html+='<p><strong>'+R.riskLabel+'</strong></p><ul>'+risk.map(function(m){return '<li>'+m+'</li>'}).join('')+'</ul>';
+    if(part.length)html+='<p><strong>'+R.partLabel+'</strong></p><ul>'+part.map(function(m){return '<li>'+m+'</li>'}).join('')+'</ul>';
+    html+='<p style="margin-top:14px">'+R.cta+'</p>';
+    res.className='result '+lvl;res.innerHTML=html;
+    var sf=document.getElementById('scoreField');if(sf)sf.value=lvl+' ; points : '+risk.join(', ')+(part.length?' ; partiels : '+part.join(', '):'');
+  }
+  render();
+  }
+
+  var f=document.getElementById('f'),t=document.getElementById('t');
+  if(f){f.addEventListener('submit',function(e){e.preventDefault();
+    fetch(f.action,{method:'POST',body:new FormData(f),headers:{Accept:'application/json'}})
+    .then(function(r){if(r.ok){f.style.display='none';t.style.display='block';}else{alert("La demande n'est pas partie. Réessayez dans quelques minutes.");}})
+    .catch(function(){alert("La demande n'est pas partie. Vérifiez votre connexion et réessayez.");});
+  });}
+})();
+</script>
+</body>
+</html>

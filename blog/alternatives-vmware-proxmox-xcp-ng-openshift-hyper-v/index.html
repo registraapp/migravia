@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alternatives à VMware : Proxmox, XCP-ng, OpenShift, Hyper-V</title>
+<meta name="description" content="Quelle alternative à VMware après Broadcom ? Proxmox VE, XCP-ng, OpenShift Virtualization et Hyper-V comparés : import des VM, coûts, compétences.">
+<link rel="canonical" href="https://migravia.fr/blog/alternatives-vmware-proxmox-xcp-ng-openshift-hyper-v/">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Migravia">
+<meta property="og:title" content="Alternatives à VMware : Proxmox, XCP-ng, OpenShift, Hyper-V">
+<meta property="og:description" content="Quelle alternative à VMware après Broadcom ? Proxmox VE, XCP-ng, OpenShift Virtualization et Hyper-V comparés : import des VM, coûts, compétences.">
+<meta property="og:url" content="https://migravia.fr/blog/alternatives-vmware-proxmox-xcp-ng-openshift-hyper-v/">
+<meta property="article:published_time" content="2026-11-03">
+<meta property="article:modified_time" content="2026-11-03">
+<meta name="author" content="Amine">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#F5F6F8;--ink:#13202E;--soft:#4F5D6C;--rule:#D2D8E0;--acc:#1E5B4F;--acc-dark:#174840;--acc-tint:#E1EFEA;--ok:#2D6A4F;--ok-tint:#E2F0E8;--warn:#8A5A00;--warn-tint:#F7EDD5;--bad:#9B2C2C;--bad-tint:#F6E1E1;--focus:#2C5FD9;--serif:"Newsreader",Georgia,serif;--sans:"Inter Tight",system-ui,sans-serif}
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;overflow-wrap:break-word}
+  :focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+  a{color:var(--ink)}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+  header .wrap{display:flex;flex-wrap:wrap;gap:10px 16px;justify-content:space-between;align-items:baseline;padding:24px 20px;border-bottom:1px solid var(--rule)}
+  .brand{font-family:var(--serif);font-weight:600;font-size:26px;text-decoration:none;letter-spacing:-.01em}
+  .brand small{font-family:var(--sans);font-weight:400;font-size:14px;color:var(--soft);margin-left:10px}
+  header nav.mainnav{display:flex;flex-wrap:wrap;gap:6px 20px;align-items:baseline}
+  header nav.mainnav a{margin:0;font-weight:500;text-decoration:none;border-bottom:2px solid transparent;padding-bottom:1px}
+  header nav.mainnav a:hover{border-bottom-color:var(--rule)}
+  header nav.mainnav a[aria-current="page"]{border-bottom-color:currentColor}
+  .hero{padding:64px 0 48px;max-width:800px}
+  .hero.small{padding:40px 0 32px}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(31px,4.8vw,50px);line-height:1.1;letter-spacing:-.015em;margin:0 0 20px;overflow-wrap:break-word}
+  .hero.small h1{font-size:clamp(30px,4.4vw,46px);line-height:1.12}
+  .lede{font-size:19px;color:var(--soft);margin:0 0 28px;max-width:62ch}
+  .actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .btn{display:inline-block;background:var(--acc);color:#fff;text-decoration:none;padding:14px 22px;border-radius:4px;border:0;font:inherit;font-weight:600;cursor:pointer;text-align:center}
+  .btn:hover{background:var(--acc-dark)}
+  .btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink);padding:12px 20px}
+  .btn.ghost:hover{background:#fff}
+  section{padding:56px 0;border-top:1px solid var(--rule)}
+  h2.s{font-family:var(--serif);font-weight:600;font-size:30px;line-height:1.2;margin:0 0 10px}
+  .sub{color:var(--soft);max-width:64ch;margin:0 0 28px}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .grid4{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .card{background:#fff;border:1px solid var(--rule);border-radius:6px;padding:24px}
+  .card h3{font-family:var(--serif);font-size:21px;margin:0 0 10px}
+  .card p{margin:0 0 10px}.card p:last-child{margin-bottom:0}
+  .card ul{padding-left:18px;margin:0}.card li{margin-bottom:7px}
+  .card.paper{background:#fbfbfb}
+  .card.real{border:2px solid var(--acc);background:var(--acc-tint)}
+  .facts{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .fact{background:#fff;border:1px solid var(--rule);border-left:5px solid var(--acc);border-radius:0 6px 6px 0;padding:18px 20px}
+  .fact strong{display:block;font-family:var(--serif);font-size:20px;line-height:1.25;margin-bottom:4px}
+  .fact p{margin:0;font-size:16px}
+  .fact .src{display:block;font-size:13px;color:var(--soft);margin-top:6px}
+  .quiz{background:#fff;border:1px solid var(--rule);border-radius:6px;padding:8px 24px 20px}
+  .q{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;padding:14px 0;border-bottom:1px solid var(--rule)}
+  .q:last-of-type{border-bottom:0}
+  .q p{margin:0}.q small{display:block;color:var(--soft);font-size:13px;margin-top:2px}
+  .seg{display:inline-flex;border:1px solid var(--rule);border-radius:4px;overflow:hidden}
+  .seg button{font:inherit;font-size:14px;border:0;background:#fff;padding:7px 12px;cursor:pointer;color:var(--ink);border-left:1px solid var(--rule)}
+  .seg button:first-child{border-left:0}
+  .seg button[aria-pressed="true"].y{background:var(--ok);color:#fff}
+  .seg button[aria-pressed="true"].p{background:var(--warn);color:#fff}
+  .seg button[aria-pressed="true"].n{background:var(--bad);color:#fff}
+  .result{margin-top:22px;border-radius:6px;padding:22px 24px;border:1px solid var(--rule);background:#fff}
+  .result.bad{background:var(--bad-tint);border-color:var(--bad)}
+  .result.mid{background:var(--warn-tint);border-color:var(--warn)}
+  .result.good{background:var(--ok-tint);border-color:var(--ok)}
+  .result h3{font-family:var(--serif);font-size:24px;margin:0 0 8px}
+  .result ul{margin:10px 0 0;padding-left:18px}
+  .offers{display:grid;grid-template-columns:repeat(var(--cols,3),1fr);gap:20px}
+  .offer{background:#fff;border:1px solid var(--rule);border-radius:6px;padding:24px;display:flex;flex-direction:column}
+  .offer.main{border:2px solid var(--acc);background:var(--acc-tint)}
+  .offer h3{font-family:var(--serif);font-size:22px;margin:0 0 4px}
+  .offer .price{font-size:26px;font-weight:600;margin:6px 0 12px;line-height:1.25}
+  .offer .price span{display:block;font-size:15px;font-weight:400;color:var(--soft)}
+  .offer ul{padding-left:18px;margin:0 0 16px}.offer li{margin-bottom:6px}
+  .offer .btn{margin-top:auto;align-self:flex-start}
+  ol.steps{counter-reset:s;list-style:none;padding:0;margin:0 0 8px;max-width:720px}
+  ol.steps li{counter-increment:s;position:relative;padding:0 0 22px 52px}
+  ol.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:34px;height:34px;border-radius:50%;border:2px solid var(--acc);display:grid;place-items:center;font-weight:600;color:var(--acc)}
+  ol.steps strong{display:block}
+  .guarantee{background:#fff;border-left:5px solid var(--acc);padding:22px 26px;max-width:760px;border-radius:0 6px 6px 0}
+  .guarantee p{margin:0 0 10px}.guarantee p:last-child{margin:0}
+  form{background:#fff;border:1px solid var(--rule);border-radius:6px;padding:26px;max-width:620px}
+  label{display:block;font-weight:500;margin-bottom:6px}
+  input,select,textarea{width:100%;max-width:100%;font:inherit;font-size:16px;padding:10px 12px;border:1px solid #B5BFCC;border-radius:4px;background:#fff;color:var(--ink);margin-bottom:16px}
+  .contact-grid{display:grid;grid-template-columns:minmax(0,620px) minmax(0,1fr);gap:28px;align-items:start}
+  .booking{background:#fff;border:1px solid var(--rule);border-radius:6px;padding:22px 24px}
+  .booking h3{font-family:var(--serif);font-size:21px;margin:0 0 8px}
+  .booking p{margin:0 0 14px}
+  .fine{font-size:14px;color:var(--soft)}
+  .thanks{display:none;background:#fff;border:1px solid var(--rule);border-radius:6px;padding:26px;max-width:620px}
+  footer{border-top:1px solid var(--rule);padding:30px 0 48px;color:var(--soft);font-size:14px}
+  footer p{margin:0 0 10px}
+  .faq{max-width:780px}
+  .faq details{border-bottom:1px solid var(--rule);padding:14px 0}
+  .faq summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:16px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";font-weight:400;font-size:22px;line-height:1}
+  .faq details[open] summary::after{content:"\2212"}
+  .faq details p{margin:10px 0 0;color:var(--soft)}
+  /* guides */
+  .crumb{font-size:14px;color:var(--soft);padding-top:22px}
+  .crumb ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:4px}
+  .crumb li+li::before{content:"\203A";margin:0 6px;color:var(--soft)}
+  .crumb a{color:var(--soft)}
+  .meta{font-size:14px;color:var(--soft);margin:0}
+  .answer{background:var(--acc-tint);border:2px solid var(--acc);border-radius:6px;padding:20px 24px;max-width:760px;margin:0 0 8px}
+  .answer p{margin:0}
+  .prose{max-width:740px;padding-bottom:24px}
+  .prose h2{font-family:var(--serif);font-weight:600;font-size:clamp(25px,3.2vw,30px);line-height:1.2;margin:48px 0 12px;padding-top:28px;border-top:1px solid var(--rule)}
+  .prose h3{font-family:var(--serif);font-weight:600;font-size:21px;line-height:1.3;margin:28px 0 8px}
+  .prose p,.prose ul,.prose ol{margin:0 0 16px}
+  .prose ul,.prose ol:not(.steps){padding-left:22px}
+  .prose li{margin-bottom:6px}
+  .prose code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em;background:#fff;border:1px solid var(--rule);border-radius:3px;padding:1px 5px;overflow-wrap:anywhere}
+  .prose pre{background:#13202E;color:#E8EDF3;border-radius:6px;padding:16px 18px;overflow-x:auto;font-size:14px;line-height:1.55;margin:0 0 18px;max-width:100%}
+  .prose pre code{background:none;border:0;padding:0;color:inherit;font-size:inherit;overflow-wrap:normal}
+  .tbl{overflow-x:auto;margin:0 0 20px;border:1px solid var(--rule);border-radius:6px;background:#fff}
+  .tbl table{border-collapse:collapse;width:100%;font-size:15px;line-height:1.5}
+  .tbl caption{text-align:left;font-size:14px;color:var(--soft);padding:12px 14px 0}
+  .tbl th,.tbl td{text-align:left;vertical-align:top;padding:11px 14px;border-bottom:1px solid var(--rule)}
+  .tbl thead th{background:var(--acc-tint);font-weight:600}
+  .tbl tr:last-child td{border-bottom:0}
+  .prose ul.check{list-style:none;padding-left:0}
+  ul.check li{position:relative;padding-left:30px}
+  ul.check li::before{content:"";position:absolute;left:2px;top:.32em;width:16px;height:16px;border:2px solid var(--acc);border-radius:3px;background:#fff}
+  .cta{background:#fff;border:1px solid var(--rule);border-left:5px solid var(--acc);border-radius:0 6px 6px 0;padding:22px 26px;margin:32px 0 8px}
+  .cta p{margin:0 0 14px}
+  .note{background:var(--warn-tint);border-left:5px solid var(--warn);padding:14px 18px;border-radius:0 6px 6px 0;font-size:15px}
+  .sources ol{padding-left:22px;font-size:15px}
+  .sources li{overflow-wrap:anywhere}
+  .related{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin:0 0 16px}
+  .related a{display:block;background:#fff;border:1px solid var(--rule);border-radius:6px;padding:16px 18px;text-decoration:none}
+  .related a strong{display:block;font-family:var(--serif);font-size:19px;line-height:1.25;margin-bottom:4px}
+  .related a span{color:var(--soft);font-size:15px}
+  .guides{display:grid;gap:20px;max-width:800px;margin-bottom:40px}
+  .guides .card h2{font-family:var(--serif);font-size:24px;line-height:1.25;margin:0 0 8px}
+  .guides .card h2 a{text-decoration:none}
+  .tag{display:inline-block;font-size:13px;font-weight:600;color:var(--acc);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
+  @media (max-width:860px){.split,.grid4,.facts,.offers,.related,.contact-grid{grid-template-columns:1fr}.q{grid-template-columns:1fr}.hero{padding:44px 0 36px}.hero.small{padding:32px 0 24px}}
+  @media (max-width:560px){.wrap{padding:0 16px}header .wrap{padding:20px 16px}header nav.mainnav{width:100%;gap:6px 16px}.brand small{display:block;margin:2px 0 0}.answer,.cta,.card,.offer,form,.quiz,.booking{padding:18px}.quiz{padding:4px 16px 14px}.actions .btn{width:100%}h2.s{font-size:26px}.tbl{overflow-x:visible}.tbl thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.tbl tr{display:block;border-bottom:1px solid var(--rule);padding:6px 0}.tbl tbody tr:last-child{border-bottom:0}.tbl td{display:block;border:0;padding:4px 14px}.tbl td::before{content:attr(data-label);display:block;font-size:12px;font-weight:600;color:var(--soft);text-transform:uppercase;letter-spacing:.04em}.tbl td:first-child{font-weight:600}}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://migravia.fr/#org", "name": "Migravia", "url": "https://migravia.fr/", "logo": "https://migravia.fr/favicon.svg", "founder": {"@type": "Person", "name": "Amine", "jobTitle": "Ingénieur DevOps freelance", "knowsAbout": ["AWS", "Google Cloud", "Microsoft Azure", "Kubernetes", "Terraform"]}, "areaServed": {"@type": "Country", "name": "France"}}, {"@type": "WebSite", "@id": "https://migravia.fr/#site", "url": "https://migravia.fr/", "name": "Migravia", "inLanguage": "fr-FR", "publisher": {"@id": "https://migravia.fr/#org"}}, {"@type": "Article", "@id": "https://migravia.fr/blog/alternatives-vmware-proxmox-xcp-ng-openshift-hyper-v/#article", "headline": "Alternatives à VMware après Broadcom : Proxmox, XCP-ng, OpenShift Virtualization ou Hyper-V", "description": "Quelle alternative à VMware après Broadcom ? Proxmox VE, XCP-ng, OpenShift Virtualization et Hyper-V comparés : import des VM, coûts, compétences.", "inLanguage": "fr-FR", "datePublished": "2026-11-03", "dateModified": "2026-11-03", "author": {"@type": "Person", "name": "Amine", "jobTitle": "Ingénieur DevOps freelance"}, "publisher": {"@id": "https://migravia.fr/#org"}, "mainEntityOfPage": {"@type": "WebPage", "@id": "https://migravia.fr/blog/alternatives-vmware-proxmox-xcp-ng-openshift-hyper-v/", "url": "https://migravia.fr/blog/alternatives-vmware-proxmox-xcp-ng-openshift-hyper-v/", "name": "Alternatives à VMware : Proxmox, XCP-ng, OpenShift, Hyper-V", "isPartOf": {"@id": "https://migravia.fr/#site"}, "inLanguage": "fr-FR"}, "url": "https://migravia.fr/blog/alternatives-vmware-proxmox-xcp-ng-openshift-hyper-v/"}, {"@type": "BreadcrumbList", "@id": "https://migravia.fr/blog/alternatives-vmware-proxmox-xcp-ng-openshift-hyper-v/#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://migravia.fr/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://migravia.fr/blog/"}, {"@type": "ListItem", "position": 3, "name": "Alternatives à VMware", "item": "https://migravia.fr/blog/alternatives-vmware-proxmox-xcp-ng-openshift-hyper-v/"}]}, {"@type": "FAQPage", "@id": "https://migravia.fr/blog/alternatives-vmware-proxmox-xcp-ng-openshift-hyper-v/#faq", "mainEntity": [{"@type": "Question", "name": "Quelle est l'alternative à VMware la moins chère ?", "acceptedAnswer": {"@type": "Answer", "text": "Sur le prix des licences, Proxmox VE et XCP-ng sont open source, avec un support éditeur optionnel par abonnement. Mais le coût réel inclut la migration, la formation, la sauvegarde et l'exploitation : seule une comparaison sur trois ans, faite sur votre parc, permet de trancher."}}, {"@type": "Question", "name": "Peut-on garder ses sauvegardes Veeam en quittant VMware ?", "acceptedAnswer": {"@type": "Answer", "text": "Cela dépend de la plateforme cible et de la version de votre outil. Vérifiez auprès de l'éditeur de sauvegarde que la cible est prise en charge avant de choisir, et testez une restauration complète avant la première vague de migration."}}, {"@type": "Question", "name": "OpenShift Virtualization est-il adapté à une PME ?", "acceptedAnswer": {"@type": "Answer", "text": "Rarement en premier choix. Il suppose un cluster OpenShift et des compétences Kubernetes. Il prend tout son sens si vous exploitez déjà des conteneurs sur OpenShift et voulez réunir VM et conteneurs sur une seule plateforme."}}, {"@type": "Question", "name": "Hyper-V est-il inclus dans Windows Server ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui, le rôle Hyper-V fait partie de Windows Server. Le coût dépend surtout de vos licences Windows Server, notamment de l'édition Datacenter, qui couvre un nombre illimité de VM Windows Server sur un hôte entièrement licencié."}}]}]}</script>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="brand" href="/">Migravia<small>sortie de VMware à prix fixe</small></a>
+  <nav class="mainnav" aria-label="Navigation principale"><a href="/">Sortie de VMware</a><a href="/windows-server-2016/">Windows Server 2016</a><a href="/blog/" aria-current="page">Guides</a><a href="#contact">Contact</a></nav>
+</div></header>
+
+<main class="wrap">
+  <nav class="crumb" aria-label="Fil d'Ariane"><ol><li><a href="/">Accueil</a></li><li><a href="/blog/">Guides</a></li><li aria-current="page">Alternatives à VMware</li></ol></nav>
+  <article>
+  <div class="hero small">
+    <h1>Alternatives à VMware après Broadcom&nbsp;: Proxmox, XCP-ng, OpenShift Virtualization ou Hyper-V</h1>
+    <p class="lede">Les renouvellements VMware depuis le rachat par Broadcom poussent de nombreuses PME et ETI à chercher une autre plateforme. Voici les quatre alternatives sérieuses, comment chacune importe vos VM, et les critères qui permettent de choisir.</p>
+    <p class="meta">Par Amine, ingénieur DevOps freelance · <time datetime="2026-11-03">Mis à jour le 3 novembre 2026</time></p>
+  </div>
+  <div class="answer"><p>Il n'existe pas de meilleure alternative à VMware dans l'absolu. Proxmox VE et XCP-ng, open source avec support optionnel, conviennent à la plupart des PME et ETI et disposent d'outils d'import depuis ESXi. Hyper-V s'impose quand le parc est très Windows et déjà couvert par des licences Datacenter. OpenShift Virtualization a du sens pour les organisations qui exploitent déjà Kubernetes. Le choix se fait sur vos compétences, votre sauvegarde, vos licences et un coût complet sur trois ans.</p></div>
+  <div class="prose">
+
+  <h2 id="contexte">Pourquoi la question se pose maintenant</h2>
+  <p>En décembre 2023, quelques semaines après la finalisation du rachat de VMware, Broadcom a arrêté la vente des licences perpétuelles et regroupé son catalogue autour d'offres sur abonnement. Il en reste quatre&nbsp;: VMware Cloud Foundation, vSphere Foundation, vSphere Standard et vSphere Essentials Plus. Les produits vendus séparément auparavant sont désormais inclus dans ces offres, que vous les utilisiez ou non.</p>
+  <p>D'autres changements ont suivi. La presse spécialisée a rapporté fin 2024 une majoration d'environ 20&nbsp;% pour les renouvellements signés après l'échéance. En janvier 2026, Broadcom a annoncé la fin de son programme VMware Cloud Service Provider en Europe, qui permettait aux hébergeurs de revendre VMware. Le CISPE, association qui représente les fournisseurs cloud européens, fait état de hausses de 800 à 1&nbsp;500&nbsp;% et a déposé en mars 2026 une plainte auprès de la direction générale de la concurrence de la Commission européenne. Enfin, vSphere 7 n'a plus de support général depuis le 2 octobre 2025&nbsp;: rester dessus n'est pas une option durable.</p>
+  <p>Pour une PME ou une ETI, la question n'est donc plus «&nbsp;faut-il regarder ailleurs&nbsp;?&nbsp;», mais «&nbsp;quelle cible, à quel coût, et avant quelle échéance&nbsp;?&nbsp;».</p>
+
+  <h2 id="comparatif">Le comparatif en un tableau</h2>
+  <div class="tbl">
+<table>
+<caption>Quatre alternatives à VMware vSphere, comparées sur les critères qui décident d'une migration</caption>
+<thead><tr><th scope="col">Critère</th><th scope="col">Proxmox VE</th><th scope="col">XCP-ng</th><th scope="col">OpenShift Virtualization</th><th scope="col">Hyper-V</th></tr></thead>
+<tbody>
+<tr><td data-label="Critère">Technologie</td><td data-label="Proxmox VE">KVM et QEMU, sur Debian</td><td data-label="XCP-ng">Hyperviseur Xen, géré par Xen Orchestra</td><td data-label="OpenShift Virtualization">KubeVirt&nbsp;: des VM pilotées par Kubernetes</td><td data-label="Hyper-V">Hyperviseur Microsoft, rôle de Windows Server</td></tr>
+<tr><td data-label="Critère">Modèle</td><td data-label="Proxmox VE">Open source, support par abonnement optionnel</td><td data-label="XCP-ng">Open source, support Vates par abonnement optionnel</td><td data-label="OpenShift Virtualization">Abonnement Red Hat OpenShift</td><td data-label="Hyper-V">Inclus dans Windows Server, selon vos licences</td></tr>
+<tr><td data-label="Critère">Import depuis VMware</td><td data-label="Proxmox VE">Assistant intégré depuis ESXi ou vCenter</td><td data-label="XCP-ng">Import V2V intégré à Xen Orchestra, à chaud puis à froid</td><td data-label="OpenShift Virtualization">Migration Toolkit for Virtualization, migration à froid ou à chaud</td><td data-label="Hyper-V">Outil de conversion dans Windows Admin Center (préversion annoncée en août 2025)</td></tr>
+<tr><td data-label="Critère">Points forts</td><td data-label="Proxmox VE">Prise en main rapide, stockage Ceph et ZFS intégrés, grande communauté</td><td data-label="XCP-ng">Éditeur français, gestion centralisée, sauvegarde intégrée à Xen Orchestra</td><td data-label="OpenShift Virtualization">VM et conteneurs sur la même plateforme, automatisation native</td><td data-label="Hyper-V">Familier des équipes Windows, intégré à l'écosystème Microsoft</td></tr>
+<tr><td data-label="Critère">Points d'attention</td><td data-label="Proxmox VE">Compétences Linux nécessaires, support éditeur en anglais</td><td data-label="XCP-ng">Écosystème d'outils tiers plus restreint</td><td data-label="OpenShift Virtualization">Complexité et coût d'un cluster OpenShift</td><td data-label="Hyper-V">Coût des licences Windows Server pour les VM Linux, outillage moins homogène</td></tr>
+<tr><td data-label="Critère">Pour qui</td><td data-label="Proxmox VE">PME et ETI, parcs de quelques hôtes à quelques dizaines</td><td data-label="XCP-ng">Hébergeurs, PME et ETI qui veulent un support européen</td><td data-label="OpenShift Virtualization">Organisations déjà sur Kubernetes ou OpenShift</td><td data-label="Hyper-V">Parcs majoritairement Windows, licences Datacenter en place</td></tr>
+</tbody>
+</table>
+</div>
+
+  <h2 id="proxmox">Proxmox VE</h2>
+  <p>Proxmox VE est une plateforme de virtualisation open source fondée sur KVM, éditée par la société autrichienne Proxmox Server Solutions. Elle gère les VM et les conteneurs LXC depuis une interface web, avec la haute disponibilité, la réplication et le stockage distribué Ceph intégrés.</p>
+  <p>Son atout pour une sortie de VMware est l'assistant d'import&nbsp;: il se connecte à un hôte ESXi ou à un vCenter et recrée les VM en convertissant leur configuration. Apparu en préversion technique fin mars 2024, il est intégré à Proxmox VE depuis la version 8.2. Il demande d'éteindre la VM source, mais un mode d'import «&nbsp;à chaud&nbsp;» permet de la démarrer côté Proxmox pendant que les disques sont copiés en arrière-plan. Nous détaillons les étapes et les pièges dans le guide <a href="/blog/migrer-vmware-vers-proxmox/">migrer de VMware vers Proxmox</a>.</p>
+
+  <h2 id="xcp-ng">XCP-ng</h2>
+  <p>XCP-ng est un hyperviseur open source fondé sur Xen, issu de Citrix XenServer et porté par la société française Vates. Il s'administre avec Xen Orchestra, qui centralise la gestion des hôtes, la sauvegarde et la réplication.</p>
+  <p>L'import depuis VMware est intégré à Xen Orchestra. Il fonctionne en deux temps&nbsp;: une copie «&nbsp;à chaud&nbsp;» pendant que la VM tourne encore, puis une copie finale des seuls changements, VM arrêtée. La documentation signale les limites à connaître&nbsp;: disques RDM, disques indépendants et disques chiffrés ne sont pas pris en charge, et les snapshots existants doivent être supprimés avant la migration.</p>
+
+  <h2 id="openshift">OpenShift Virtualization</h2>
+  <p>OpenShift Virtualization fait tourner des VM sur Kubernetes, grâce au projet KubeVirt. Les VM deviennent des objets Kubernetes, gérés avec les mêmes outils que les conteneurs.</p>
+  <p>La migration passe par le Migration Toolkit for Virtualization (MTV), un opérateur qui lit l'inventaire de vCenter et importe les VM. La migration à chaud suppose que le suivi des blocs modifiés (CBT) soit activé dans vSphere&nbsp;; sinon, la VM reste arrêtée pendant toute la copie. Les pilotes VirtIO sont injectés dans les VM Windows au passage. C'est une cible pertinente si vous exploitez déjà OpenShift, beaucoup moins si tout reste à construire.</p>
+
+  <h2 id="hyper-v">Hyper-V</h2>
+  <p>Hyper-V est l'hyperviseur de Microsoft, inclus dans Windows Server. Pour un parc majoritairement Windows, couvert par des licences Datacenter, c'est souvent l'option la plus naturelle.</p>
+  <p>Microsoft a annoncé en août 2025 un outil gratuit de conversion des VM VMware vers Hyper-V, sous forme d'extension de Windows Admin Center, en préversion publique. Il réplique les disques pendant que la VM source tourne, puis demande un court arrêt pour la copie finale. Vérifiez au moment de votre projet son statut et les versions de vCenter prises en charge.</p>
+
+  <h2 id="choisir">Comment choisir</h2>
+  <p>Quatre questions départagent presque toujours les candidats.</p>
+  <ul class="check">
+    <li><strong>Qui exploitera la plateforme&nbsp;?</strong> Une équipe à l'aise sous Linux ira vers Proxmox VE ou XCP-ng&nbsp;; une équipe Windows, vers Hyper-V.</li>
+    <li><strong>Votre sauvegarde suit-elle&nbsp;?</strong> Vérifiez que votre outil protège la cible, et testez une restauration avant de migrer.</li>
+    <li><strong>Que contiennent vos licences Microsoft&nbsp;?</strong> Des licences Datacenter déjà payées changent le calcul.</li>
+    <li><strong>Avez-vous un projet Kubernetes&nbsp;?</strong> Si oui, OpenShift Virtualization mérite d'être chiffré&nbsp;; sinon, il ajoute une complexité inutile.</li>
+  </ul>
+  <p>Une fois la cible pressentie, comparez le devis de renouvellement Broadcom au coût complet de l'alternative sur trois ans&nbsp;: abonnements de support, migration, formation, temps d'exploitation. Si le résultat est serré, le chiffrage vous sert au moins à négocier.</p>
+
+  <div class="cta">
+    <p><strong>Votre parc, chiffré sur trois ans.</strong> Le plan de sortie Migravia (1&nbsp;900&nbsp;€&nbsp;HT) compare votre devis Broadcom à l'alternative retenue, recommande une cible et prévoit la bascule. Il commence par un diagnostic gratuit sur votre export RVTools.</p>
+    <div class="actions"><a class="btn" href="/#offre">Voir les offres</a><a class="btn ghost" href="#contact" data-booking>Prendre rendez-vous (30 min)</a></div>
+  </div>
+
+  <h2 id="faq">Questions fréquentes</h2>
+  <div class="faq">
+    <details><summary>Quelle est l&#x27;alternative à VMware la moins chère&nbsp;?</summary><p>Sur le prix des licences, Proxmox VE et XCP-ng sont open source, avec un support éditeur optionnel par abonnement. Mais le coût réel inclut la migration, la formation, la sauvegarde et l&#x27;exploitation&nbsp;: seule une comparaison sur trois ans, faite sur votre parc, permet de trancher.</p></details>
+    <details><summary>Peut-on garder ses sauvegardes Veeam en quittant VMware&nbsp;?</summary><p>Cela dépend de la plateforme cible et de la version de votre outil. Vérifiez auprès de l&#x27;éditeur de sauvegarde que la cible est prise en charge avant de choisir, et testez une restauration complète avant la première vague de migration.</p></details>
+    <details><summary>OpenShift Virtualization est-il adapté à une PME&nbsp;?</summary><p>Rarement en premier choix. Il suppose un cluster OpenShift et des compétences Kubernetes. Il prend tout son sens si vous exploitez déjà des conteneurs sur OpenShift et voulez réunir VM et conteneurs sur une seule plateforme.</p></details>
+    <details><summary>Hyper-V est-il inclus dans Windows Server&nbsp;?</summary><p>Oui, le rôle Hyper-V fait partie de Windows Server. Le coût dépend surtout de vos licences Windows Server, notamment de l&#x27;édition Datacenter, qui couvre un nombre illimité de VM Windows Server sur un hôte entièrement licencié.</p></details>
+  </div>
+
+  <h2 id="sources">Sources</h2>
+  <div class="sources">
+  <ol>
+    <li><a href="https://www.theregister.com/2023/12/12/vmware_broadcom_licensing_changes/" rel="noopener">The Register — VMware by Broadcom&nbsp;: fin des licences perpétuelles et nouveau catalogue (12 décembre 2023)</a> — presse spécialisée</li>
+    <li><a href="https://itdaily.com/news/business/broadcom-verrast-vmware-klanten-met-boetes-voor-laattijdige-vernieuwingen" rel="noopener">ITdaily — Broadcom pénalise les renouvellements VMware tardifs (29 octobre 2024)</a> — presse spécialisée</li>
+    <li><a href="https://www.it-connect.fr/broadcom-vmware-des-hausses-de-tarifs-de-800-a-1-500-sur-le-tarif-des-licences/" rel="noopener">IT-Connect — Broadcom VMware&nbsp;: des hausses de 800 à 1&nbsp;500&nbsp;% sur le tarif des licences</a> — chiffres du CISPE, mai 2025</li>
+    <li><a href="https://next.ink/brief-article/vmware-nouvelle-plainte-contre-broadcom-le-cispe-demande-des-actions-immediates/" rel="noopener">Next — VMware&nbsp;: nouvelle plainte contre Broadcom, le CISPE demande des actions immédiates (23 mars 2026)</a> — plainte auprès de la DG Concurrence</li>
+    <li><a href="https://blogs.vmware.com/cloud-foundation/2025/03/31/reminder-vsphere-7-to-reach-end-of-service-october-2-2025" rel="noopener">VMware by Broadcom — vSphere 7&nbsp;: fin du support général le 2 octobre 2025</a> — blog officiel</li>
+    <li><a href="https://heise.de/-9699491" rel="noopener">heise online — Proxmox VE 8.2 facilite la migration des VM ESXi</a> — presse spécialisée</li>
+    <li><a href="https://www.storagereview.com/news/proxmox-import-wizard-makes-for-easy-vmware-vm-migrations" rel="noopener">StorageReview — Proxmox Import Wizard (28 mars 2024)</a> — préversion technique, ESXi 6.5 à 8.0</li>
+    <li><a href="https://docs.xen-orchestra.com/guides/v2v-migration-guide" rel="noopener">Xen Orchestra — guide de migration V2V depuis VMware</a> — documentation officielle</li>
+    <li><a href="https://www.redhat.com/en/blog/migrating-virtual-machines-vsphere-red-hat-openshift-virtualization-migration-toolkit-virtualization" rel="noopener">Red Hat — Migrer des VM de vSphere vers OpenShift Virtualization avec MTV</a> — blog officiel</li>
+    <li><a href="https://www.it-connect.fr/microsoft-devoile-un-nouvel-outil-pour-faciliter-les-migrations-de-vmware-a-hyper-v/" rel="noopener">IT-Connect — Microsoft dévoile un outil pour migrer de VMware à Hyper-V (26 août 2025)</a> — préversion publique</li>
+  </ol>
+  <p class="fine">Sources consultées le 3 novembre 2026. </p>
+  </div>
+
+  <h2>À lire aussi</h2>
+  <div class="related">
+    <a href="/blog/migrer-vmware-vers-proxmox/"><strong>Migrer de VMware vers Proxmox</strong><span>Les étapes, les outils et les pièges d'une bascule réussie.</span></a>
+    <a href="/blog/windows-server-2016-fin-de-support/"><strong>Windows Server 2016&nbsp;: fin de support</strong><span>Options et calendrier avant le 12 janvier 2027.</span></a>
+    <a href="/"><strong>Sortie de VMware à prix fixe</strong><span>Diagnostic gratuit, plan de sortie, migration au forfait.</span></a>
+  </div>
+  </div>
+  </article>
+
+
+  <section id="contact">
+    <h2 class="s">Demander le diagnostic gratuit</h2>
+    <p class="sub">Envoyez votre export RVTools ou décrivez votre parc&nbsp;: vous recevez un diagnostic écrit sous 5 jours ouvrés, avec un prix ferme pour la suite. Aucun appel commercial non sollicité.</p>
+    <div class="contact-grid">
+    <div>
+    <form id="f" method="POST" action="https://formspree.io/f/mzeejnkr">
+      <label for="email">E-mail professionnel</label>
+      <input id="email" name="email" type="email" required autocomplete="email">
+      <label for="societe">Entreprise</label>
+      <input id="societe" name="entreprise" type="text" required autocomplete="organization">
+      <label for="profil">Vous êtes</label>
+      <select id="profil" name="profil"><option>PME ou ETI</option><option>Hébergeur</option><option>Infogéreur ou ESN (marque blanche)</option><option>Autre</option></select>
+      <label for="sujet">Votre projet</label>
+      <select id="sujet" name="projet"><option selected>Sortie de VMware</option><option>Migration Windows Server 2016</option><option>Les deux</option></select>
+      <label for="taille">Nombre de VM ou de serveurs</label>
+      <select id="taille" name="taille"><option>Moins de 10</option><option>10 à 50</option><option>51 à 200</option><option>Plus de 200</option><option>Je ne sais pas</option></select>
+      <label for="echeance">Échéance</label>
+      <select id="echeance" name="echeance"><option>Renouvellement VMware dans moins de 6 mois</option><option>Renouvellement dans 6 à 12 mois</option><option>Fin de support Windows Server 2016</option><option>Pas d'échéance précise</option></select>
+      <label for="msg">Votre situation (facultatif)</label>
+      <textarea id="msg" name="message" rows="3"></textarea>
+      <input type="hidden" name="score_diagnostic" id="scoreField" value="">
+      <input type="hidden" name="site" value="migravia.fr">
+      <input type="hidden" name="source" value="migravia-blog-alternatives-v1">
+      <input type="hidden" name="_subject" value="Demande Migravia (blog-alternatives)">
+      <button class="btn" type="submit">Envoyer</button>
+      <p class="fine">Vos informations servent uniquement à répondre à cette demande. L'export RVTools pourra être transmis par un lien sécurisé après ce premier échange.</p>
+    </form>
+    <div class="thanks" id="t"><p><strong>Demande envoyée.</strong> Vous recevez une réponse écrite sous un jour ouvré, avec la marche à suivre pour transmettre votre export RVTools.</p></div>
+    </div>
+    <aside class="booking">
+      <h3>Préférez un échange de vive voix&nbsp;?</h3>
+      <p>Trente minutes en visio pour décrire votre parc, votre échéance de renouvellement et vos contraintes. Vous repartez avec les premières pistes, sans engagement.</p>
+      <a class="btn" href="#contact" data-booking>Prendre rendez-vous (30 min)</a>
+    </aside>
+    </div>
+  </section>
+
+</main>
+
+<footer><div class="wrap">
+<p>Migravia — sortie de VMware et migration de serveurs à prix fixe, pour les PME, ETI, hébergeurs et infogéreurs français. Conduit par Amine, ingénieur DevOps freelance (AWS, GCP, Azure, Kubernetes, Terraform).</p>
+<p><a href="/">Sortie de VMware</a> · <a href="/windows-server-2016/">Migration Windows Server 2016</a> · <a href="/blog/">Guides</a>&nbsp;: <a href="/blog/alternatives-vmware-proxmox-xcp-ng-openshift-hyper-v/">Alternatives à VMware</a> · <a href="/blog/migrer-vmware-vers-proxmox/">Migrer de VMware vers Proxmox</a> · <a href="/blog/windows-server-2016-fin-de-support/">Windows Server 2016&nbsp;: fin de support</a></p>
+<p>VMware, vSphere et ESXi sont des marques de Broadcom&nbsp;; Windows Server et Hyper-V, de Microsoft&nbsp;; Proxmox, de Proxmox Server Solutions&nbsp;; XCP-ng, de Vates&nbsp;; OpenShift, de Red Hat. Migravia n'est affilié à aucun de ces éditeurs. Tous les prix sont fixes et hors taxes.</p>
+</div></footer>
+<script>
+(function(){
+  var f=document.getElementById('f'),t=document.getElementById('t');
+  if(f){f.addEventListener('submit',function(e){e.preventDefault();
+    fetch(f.action,{method:'POST',body:new FormData(f),headers:{Accept:'application/json'}})
+    .then(function(r){if(r.ok){f.style.display='none';t.style.display='block';}else{alert("La demande n'est pas partie. Réessayez dans quelques minutes.");}})
+    .catch(function(){alert("La demande n'est pas partie. Vérifiez votre connexion et réessayez.");});
+  });}
+})();
+</script>
+</body>
+</html>
